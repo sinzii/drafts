@@ -8,20 +8,69 @@
 
 ### Overview
 
-- Wallet is a key factor to blockchain technology & cryptocurrencies, it should be secure, easy to use and for mass adoption it should have a frictionless users onboarding experience.
-- Polkadot & Kusama ecosystem has seen a few wallet solutions out there with great UI/UX (SubWallet, Talisman, Enkrypt, Nova). On desktop, most of the solutions are browser extension-based wallet with which users need to install an extension in order to interact with dapps and networks. On mobile, most of the browsers do not support extensions, so users would need to install wallet mobile apps and then interact with dapp via Dapp Browser build inside the apps (SubWallet, Nova). We believe this creates an inconsistent experience for users on desktop & mobile since most of the dapps are website-based thus posing a barrier in onboarding new users to the ecosystem, especially for those who are new to or less-educated about crypto.
-- As users, we love the website-based wallet experience that the NEAR wallet bring to the NEAR ecosystem where users can connect to dapps using their favorite browsers and access their wallet smoothly inside the same browser on both desktop & mobile.
-- With that inspiration, we propose to build SubProfile, a website-based multi-chain wallet, to bring the similar experience to Polkadot & Kusama ecosystem with which we believe it will bring a huge benefits to both users & the ecosystem.
+Wallet is a key factor to blockchain technology & cryptocurrencies, it should be secure, easy to use and for mass adoption it should have a frictionless users onboarding experience.
+
+Polkadot & Kusama ecosystem has seen a few wallet solutions out there with great UI/UX (SubWallet, Talisman, Enkrypt, Nova). On desktop, most of the solutions are browser extension-based wallet with which users need to install an extension in order to interact with dapps and networks. On mobile, most of the browsers do not support extensions, so users would need to install wallet mobile apps and then interact with dapp via Dapp Browser build inside the apps (SubWallet, Nova). We believe this creates an inconsistent experience for users on desktop & mobile since most of the dapps are website-based thus posing a barrier in onboarding new users to the ecosystem, especially for those who are new to or less-educated about crypto.
+
+As users, we love the website-based wallet experience that the NEAR wallet bring to the NEAR ecosystem where users can connect to dapps using their favorite browsers and access their wallet smoothly inside the same browser on both desktop & mobile.
+
+With that inspiration, we propose to build SubProfile, a website-based multi-chain wallet, to bring the similar experience to Polkadot & Kusama ecosystem with which we believe it will bring a huge benefits to both users & the ecosystem.
 
 ### Project Details
 
 #### Design Goals
+- Compatible with `@polkadot/extension` API
+    - Most the wallet in the ecosystem are now following `@poladot/extension` API which is widely used now in the ecosystem. So being compatible `@polkadot/extension` API will help dapps can easily integrate with SubProfile within a few steps.
+    - The `@polkadot/extension` API allows dapps to call into the wallet to access granted information (connected accounts) as well as asking for permission/approval (request to access accounts, sign transaction, …), dapps can also subscribe to changes happened inside the wallet. Those ability seems to be impossible with the redirection-based approach that the Near wallet is using, not to mentioned it might introduce a lot of redirections when dapps want to access more information from the wallet. The redirection-based approach also have a drawback which is the redirection will reset the state of the dapp after redirecting from wallet back to dapp, this would requires dapps to put more efforts in integration.
+    - The approach that SubProfile would take is similar to how dapps interact with extension-based wallets which is via `window.postMessage` API.
+        - To access granted information or subscribe to changes from the wallet, dapps will send/receive messages via an iframe loading [subprofile.io](http://subprofile.io) wallet, the iframe will be injected inside dapps via SubProfile SDK
+        - To ask for users’ permission/approval, dapps would open a child tab of [subprofile.io](http://subprofile.io) wallet using `[window.open](http://window.open)` API, the `window.open` will return a window object of the child tab allowing wallet & dapps to send messages back and forth via `window.postMessage`
+        - We have created a PoC to demonstrate how dapps can interact with a website-based wallet to ask for accounts access & sign dummy data. Live demo here
+- Security first
+    - We believe a wallet not only should be easy to use but also can secure users’ information. SubProfile is a non-custodial wallet, users’ private keys & seed phrase will be encrypted and stored in `localStorage` of the browsers, and can only be decrypted by users’ wallet password.
+
 #### Account Creation
+SubProfile is a hierarchical deterministic (HD) wallet following the idea of [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which only requires users to back up only one seed phrase upon setting up the wallet, new accounts will be created by deriving from the setup seed and an account index number as the derivation path (`//{index}`), `index` number will be started from `0` and increased one by one as new accounts are created. The first account will be created without derivation path, this is to be compatible with Polkadot{.js} wallet.
+
+SubProfile also supports import accounts by private keys, but those accounts cannot be recovered by the setup seed phrase, so they will be labeled as `Imported Account`
+
 #### Dapp-Wallet Communication
+> TODO: UPDATE
+
+
 #### Integration Process into Dapps
+- Developers need to install SubProfile SDK (`@subprofile/sdk`) into the dapps and run SubProfile wallet initialization upon loading dapps to [inject the SubProfile API](https://github.com/polkadot-js/extension#injection-information).
+- After the SubProfile API is injected, dapps can interact with SubProfile just like they interact with other extension-based wallets. E.g: calling `window.injectedWeb3['subprofile'].enable()` to request access to the wallet & users’ accounts.
+- `@subprofile/sdk` will be published on npm registry so developers can easily download & integrate to dapps.
+
 #### Vision
+We set a vision for SubProfile to be an important part of Polkadot/Kusama ecosystem with fully-fledge features like view/send balances, EVM accounts, NFTs, staking, crowdloan, transaction history… We will split the development of SubProfile into several phases. This application is asking for grant to support the first development phase.
+
+The first development phase will be focus on the core features of the wallet and the SDK with `@polkadot/extension` compatibility to help dapps easily integrate with SubProfile.
+
 #### Mockups
+- Welcome screen
+![image](https://user-images.githubusercontent.com/6867026/207111441-80000a50-61ec-41ba-a7c5-6861fe7b1475.png)
+- Set up new wallet
+![image](https://user-images.githubusercontent.com/6867026/207111541-9b4f8dac-45d9-4a0c-a531-1cfc1afaffe1.png)
+- Unlock Wallet
+![image](https://user-images.githubusercontent.com/6867026/207111594-c1e1870b-a1cd-4874-b878-fb3bd69bcce7.png)
+- List accounts
+![image](https://user-images.githubusercontent.com/6867026/207111645-a0140b3f-b719-4881-ae06-5c0f23d7b32d.png)
+- Create account
+- Account controls (Forget, Copy address, Show QR Code, Export, Rename, Dapps Access)
+- Sign Transaction
+- Sign Message
+- Request Wallet Access
+- Other additional features:
+    - Export wallet
+    - Import account
+    - Manage Dapps Access
+    - Settings
+
 #### Technology Stack
+- React/Redux
+- Polkadot{.js} Extension/Api
 
 ### Ecosystem Fit
 
@@ -68,58 +117,56 @@ Team members
 
 ## Development Status :open_book:
 
-If you've already started implementing your project or it is part of a larger repository, please provide a link and a description of the code here. In any case, please provide some documentation on the research and other work you have conducted before applying. This could be:
+- We’ve been researched the `@polkadot/extension` source code to have a sense of how the wallet is setup & work, also to better understand the interaction between dapps & extension. SubProfile will be compatible with `@polkadot/extension` API, so knowing its source code to a certain extend would greatly help the development of SubProfile.
 
-- links to improvement proposals or [RFPs](https://github.com/w3f/Grants-Program/tree/master/rfp-proposal) (requests for proposal),
-- academic publications relevant to the problem,
-- links to your research diary, blog posts, articles, forum discussions or open GitHub issues,
-- references to conversations you might have had related to this project with anyone from the Web3 Foundation,
-- previous interface iterations, such as mock-ups and wireframes.
+- We’ve also been working on a PoC to demonstrate the interaction between dapp & wallet.
+    - Live demo
+    - Source code: demo-dapp, demo-wallet
 
 ## Development Roadmap :nut_and_bolt:
 
-This section should break the development roadmap down into milestones and deliverables. To assist you in defining it, we have created a document with examples for some grant categories [here](../docs/grant_guidelines_per_category.md). Since these will be part of the agreement, it helps to describe _the functionality we should expect in as much detail as possible_, plus how we can verify and test that functionality. Whenever milestones are delivered, we refer to this document to ensure that everything has been delivered as expected.
-
-Below we provide an **example roadmap**. In the descriptions, it should be clear how your project is related to Substrate, Kusama or Polkadot. We _recommend_ that teams structure their roadmap as 1 milestone ≈ 1 month.
-
-> :exclamation: If any of your deliverables is based on somebody else's work, make sure you work and publish _under the terms of the license_ of the respective project and that you **highlight this fact in your milestone documentation** and in the source code if applicable! **Teams that submit others' work without attributing it will be immediately terminated.**
-
 ### Overview
 
-- **Total Estimated Duration:** Duration of the whole project (e.g. 2 months)
-- **Full-Time Equivalent (FTE):**  Average number of full-time employees working on the project throughout its duration (see [Wikipedia](https://en.wikipedia.org/wiki/Full-time_equivalent), e.g. 2 FTE)
-- **Total Costs:** Requested amount in USD for the whole project (e.g. 12,000 USD). Note that the acceptance criteria and additional benefits vary depending on the [level](../README.md#level_slider-levels) of funding requested. This and the costs for each milestone need to be provided in USD; if the grant is paid out in Bitcoin, the amount will be calculated according to the exchange rate at the time of payment.
-
-### Milestone 1 Example — Basic functionality
-
-- **Estimated duration:** 1 month
-- **FTE:**  1,5
-- **Costs:** 8,000 USD
+- **Total Estimated Duration:** 5 months
+- **Full-Time Equivalent (FTE):**  1.5 FTE
+- **Total Costs:** 30,000 USD
 
 > :exclamation: **The default deliverables 0a-0d below are mandatory for all milestones**, and deliverable 0e at least for the last one. If you do not intend to deliver one of these, please state a reason in its specification (e.g. Milestone X is research oriented and as such there is no code to test).
 
+
+### Milestone 1 — Core features & SDK
+
+- **Estimated duration:** 2.5 month
+- **FTE:**  1,5
+- **Costs:** 15,000 USD
+
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
-| **0a.** | License | Apache 2.0 / GPLv3 / MIT / Unlicense |
+| **0a.** | License | Apache 2.0 |
 | **0b.** | Documentation | We will provide both **inline documentation** of the code and a basic **tutorial** that explains how a user can (for example) spin up one of our Substrate nodes and send test transactions, which will show how the new functionality works. |
 | **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
 | **0d.** | Docker | We will provide a Dockerfile(s) that can be used to test all the functionality delivered with this milestone. |
-| 0e. | Article | We will publish an **article**/workshop that explains [...] (what was done/achieved as part of the grant). (Content, language and medium should reflect your target audience described above.) |
-| 1. | Substrate module: X | We will create a Substrate module that will... (Please list the functionality that will be implemented for the first milestone. You can refer to details provided in previous sections.) |
-| 2. | Substrate module: Y | The Y Substrate module will... |
-| 3. | Substrate module: Z | The Z Substrate module will... |
-| 4. | Substrate chain | Modules X, Y & Z of our custom chain will interact in such a way... (Please describe the deliverable here as detailed as possible) |
-| 5. | Library: ABC | We will deliver a JS library that will implement the functionality described under "ABC Library" |
-| 6. | Smart contracts: ... | We will deliver a set of ink! smart contracts that will...
+| 0e. | Article | We will publish an **article**/workshop that explains SubProfile Wallet (what was done/achieved as part of the grant) |
+| 1. | Core features | We will create a Substrate module that will... (Please list the functionality that will be implemented for the first milestone. You can refer to details provided in previous sections.) |
+| 2. | SubProfile SDK | We will create a Substrate module that will... (Please list the functionality that will be implemented for the first milestone. You can refer to details provided in previous sections.) |
 
 
-### Milestone 2 Example — Additional features
+### Milestone 2 — Additional features, demo & documentation
 
-- **Estimated Duration:** 1 month
+- **Estimated duration:** 2.5 month
 - **FTE:**  1,5
-- **Costs:** 8,000 USD
+- **Costs:** 15,000 USD
 
-...
+| Number | Deliverable | Specification |
+| -----: | ----------- | ------------- |
+| **0a.** | License | Apache 2.0 |
+| **0b.** | Documentation | We will provide both **inline documentation** of the code and a basic **tutorial** that explains how a user can (for example) spin up one of our Substrate nodes and send test transactions, which will show how the new functionality works. |
+| **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
+| **0d.** | Docker | We will provide a Dockerfile(s) that can be used to test all the functionality delivered with this milestone. |
+| 0e. | Article | We will publish an **article**/workshop that explains SubProfile Wallet (what was done/achieved as part of the grant) |
+| 1. | Additional features | We will create a Substrate module that will... (Please list the functionality that will be implemented for the first milestone. You can refer to details provided in previous sections.) |
+| 2. | Demo Dapp | We will create a Substrate module that will... (Please list the functionality that will be implemented for the first milestone. You can refer to details provided in previous sections.) |
+| 3. | Integration documentation | We will create a Substrate module that will... (Please list the functionality that will be implemented for the first milestone. You can refer to details provided in previous sections.) |
 
 
 ## Future Plans
@@ -129,18 +176,6 @@ Please include here
 - how you intend to use, enhance, promote and support your project in the short term, and
 - the team's long-term plans and intentions in relation to it.
 
-## Referral Program (optional) :moneybag: 
-
-You can find more information about the program [here](../README.md#moneybag-referral-program).
-- **Referrer:** Name of the Polkadot Ambassador or GitHub account of the Web3 Foundation grantee
-- **Payment Address:** BTC, Ethereum (USDT/USDC/DAI) or Polkadot/Kusama (aUSD) payment address. Please also specify the currency. (e.g. 0x8920... (DAI))
-
 ## Additional Information :heavy_plus_sign:
 
-**How did you hear about the Grants Program?** Web3 Foundation Website / Medium / Twitter / Element / Announcement by another team / personal recommendation / etc.
-
-Here you can also add any additional information that you think is relevant to this application but isn't part of it already, such as:
-
-- Work you have already done.
-- If there are any other teams who have already contributed (financially) to the project.
-- Previous grants you may have applied for.
+**How did you hear about the Grants Program?** Web3 Foundation Website & Medium
