@@ -47,22 +47,41 @@ The first development phase will be focus on the core features of the wallet and
 #### Mockups
 - Welcome screen
 ![image](https://user-images.githubusercontent.com/6867026/207111441-80000a50-61ec-41ba-a7c5-6861fe7b1475.png)
+
 - Set up new wallet
 ![image](https://user-images.githubusercontent.com/6867026/207111541-9b4f8dac-45d9-4a0c-a531-1cfc1afaffe1.png)
+
 - Unlock Wallet
 ![image](https://user-images.githubusercontent.com/6867026/207111594-c1e1870b-a1cd-4874-b878-fb3bd69bcce7.png)
+
 - List accounts
-![image](https://user-images.githubusercontent.com/6867026/207111645-a0140b3f-b719-4881-ae06-5c0f23d7b32d.png)
+![image](https://user-images.githubusercontent.com/6867026/207533626-38ebaeda-3b45-4674-85b7-8281ebcc3453.png)
+
 - Create account
+![image](https://user-images.githubusercontent.com/6867026/207533724-1951706c-5938-46ad-87d4-4de02c098a2f.png)
+
 - Account controls (Forget, Copy address, Show QR Code, Export, Rename, Dapps Access)
-- Sign Transaction
-- Sign Message
+![image](https://user-images.githubusercontent.com/6867026/207533938-b600fe4d-a2dc-4bac-8e25-8f02285789a0.png)
+
+- Sign/Approve Transaction & Message
+![image](https://user-images.githubusercontent.com/6867026/207534309-b0d97872-a9d6-46f9-bd7b-410e2cf2e0fb.png)
+
 - Request Wallet Access
+![image](https://user-images.githubusercontent.com/6867026/207534529-f5a76e59-f662-47ba-b20f-8d647075eddb.png)
+
 - Other additional features:
     - Export wallet
+    ![image](https://user-images.githubusercontent.com/6867026/207534742-69978e96-5262-4ca2-b7d8-fe699354085b.png)
+
     - Import account
+    ![image](https://user-images.githubusercontent.com/6867026/207534813-ac3425af-ceff-4a6e-85bb-d159fcc9f58e.png)
+
     - Manage Dapps Access
+    ![image](https://user-images.githubusercontent.com/6867026/207534928-00eec8fe-2078-47a2-bc1f-b80773da1bbc.png)
+
     - Settings
+    ![image](https://user-images.githubusercontent.com/6867026/207535025-eb619e5b-8d84-4ec9-a94a-958f895846c7.png)
+
 
 #### Technology Stack
 - React/Redux/Material UI
