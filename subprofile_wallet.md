@@ -128,9 +128,6 @@ Team members
 - **Full-Time Equivalent (FTE):**  1.5 FTE
 - **Total Costs:** 30,000 USD
 
-> :exclamation: **The default deliverables 0a-0d below are mandatory for all milestones**, and deliverable 0e at least for the last one. If you do not intend to deliver one of these, please state a reason in its specification (e.g. Milestone X is research oriented and as such there is no code to test).
-
-
 ### Milestone 1 — Core features & SDK
 
 - **Estimated duration:** 2.5 month
@@ -177,4 +174,5 @@ Please include here
 ## Additional Information :heavy_plus_sign:
 
 **How did you hear about the Grants Program?** 
+
 Web3 Foundation Website & Medium
