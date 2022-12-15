@@ -12,7 +12,7 @@ Wallet is a key factor to blockchain technology & cryptocurrencies, it should be
 
 Polkadot & Kusama ecosystem has seen a few wallet solutions out there with great UI/UX (SubWallet, Nova, Talisman, Enkrypt). On desktop, most of the solutions are browser extension-based wallet with which users need to install an extension in order to interact with dapps and networks. On mobile, most of the browsers do not support extensions, so users would need to install wallet mobile apps and then interact with dapp via Dapp Browser build inside the apps (SubWallet, Nova). We believe this creates an inconsistent experience for users on desktop & mobile since most of the dapps are website-based thus posing a barrier in onboarding new users to the ecosystem, especially for those who are new to or less-educated about crypto.
 
-As users, we love the website-based wallet experience that the NEAR wallet bring to the NEAR ecosystem where users can connect to dapps using their favorite browsers and access their wallet smoothly inside the same browser on both desktop & mobile.
+As users, we love the website-based wallet experience that the [NEAR wallet](https://wallet.near.org/) bring to the NEAR ecosystem where users can connect to dapps using their favorite browsers and access their wallet smoothly inside the same browser on both desktop & mobile.
 
 With that inspiration, we propose to build SubProfile, a website-based multi-chain wallet, to bring the similar experience to Polkadot & Kusama ecosystem with which we believe it will bring a huge benefits to both users & the ecosystem.
 
@@ -42,10 +42,10 @@ SubProfile also supports import accounts by private keys, but those accounts can
 #### Vision
 We set a vision for SubProfile to be an important part of Polkadot/Kusama ecosystem with fully-fledge features like view/send balances, EVM accounts, NFTs, staking, crowdloan, transaction history… We will split the development of SubProfile into several phases. This application is asking for grant to support the first development phase.
 
-The first development phase will be focus on the core features of the wallet and the SDK with `@polkadot/extension` compatibility to help dapps easily integrate with SubProfile.
+The first development phase will be focus on the core/common features of the wallet and the SDK with `@polkadot/extension` compatibility to help dapps easily integrate with SubProfile.
 
-#### Mockups
-_These are simple mockups serve as guidance for UI development, the final product might look different._
+#### Wireframes
+_These are simple wireframes serve as guidance for UI development, the final product might look different._
 
 - Welcome screen
 ![image](https://user-images.githubusercontent.com/6867026/207111441-80000a50-61ec-41ba-a7c5-6861fe7b1475.png)
@@ -86,8 +86,8 @@ _These are simple mockups serve as guidance for UI development, the final produc
 
 
 #### Technology Stack
-- React/Redux/Material UI
-- Polkadot{.js} Extension/Api
+- React/Redux
+- Material UI
 
 ### Ecosystem Fit
 
@@ -97,7 +97,7 @@ As discussed above, there’re a few wallet solutions out there in the ecosystem
 
 [Choko wallet](https://github.com/w3f/Grants-Program/blob/master/applications/choko_wallet.md) is also an other website-based wallet but there’re a few differences:
 
-- Choko wallet took the redirection-based approach like the near wallet did while SubProfile uses the `window.postMessage` API for cross-tab & cross-origin communication like how dapps interact with extension-based wallets.
+- Choko wallet took the redirection-based approach like the [NEAR wallet](https://wallet.near.org/) did while SubProfile uses the `window.postMessage` API for cross-tab & cross-origin communication like how dapps interact with extension-based wallets.
 - SubProfile is compatible with `@polkadot/extension` API which is widely adopted in the ecosystem, so dapps can integrate with SubProfile just like how they integrate with extension-based wallets.
 
 ## Team :busts_in_silhouette:
@@ -157,7 +157,7 @@ Team members
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
 | **0a.** | License | Apache 2.0 |
-| **0b.** | Documentation | We will provide both **inline documentation** of the code, a live demo of the wallet and instruction on how to integrate SubProfile Wallet into dapps using SubProfile SDK. |
+| **0b.** | Documentation | We will provide **inline documentation** of the code, a live demo of the wallet and instruction on how to integrate SubProfile Wallet into dapps using SubProfile SDK. |
 | **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
 | **0d.** | Docker | We will provide a Dockerfile that can be used to test all the functionality delivered with this milestone. |
 | 1. | Wallet App / Core features | We'll implement the following features for the wallet app:<br>- Welcome screen: Shows a small introduction about SubProfile & instructw users to set up the wallet by creating a new one or import from an existing seed phrase.<br>- Unlock wallet: Requires users to enter password to access the wallet<br>- Set up new wallet: Guides users through a screen flow to help setting up their wallet from pick up a wallet password, to back up secret recovery phrase (12 words).<br>- Create account: Creates a new account<br>- List accounts: Lists all of the accounts users have created<br>- Request wallet access: Allows users to approve dapps access to the wallet accounts<br>- Approve transaction: Allows users to sign/approve a transaction  |
