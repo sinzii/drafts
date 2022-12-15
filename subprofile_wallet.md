@@ -1,7 +1,7 @@
 # SubProfile
 
 - **Team Name:** SubProfile
-- **Payment Address:** TBP (e.g. 0x8920... (DAI))
+- **Payment Address:** 0xdF14fb4c2F189402b510C603e7f52bf416Fd477B (DAI)
 - **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 2
 
 ## Project Overview :page_facing_up:
@@ -45,6 +45,8 @@ We set a vision for SubProfile to be an important part of Polkadot/Kusama ecosys
 The first development phase will be focus on the core features of the wallet and the SDK with `@polkadot/extension` compatibility to help dapps easily integrate with SubProfile.
 
 #### Mockups
+_These are simple mockups serve as guidance for UI development, the final product might look different._
+
 - Welcome screen
 ![image](https://user-images.githubusercontent.com/6867026/207111441-80000a50-61ec-41ba-a7c5-6861fe7b1475.png)
 
@@ -133,7 +135,6 @@ Team members
 ## Development Status :open_book:
 
 - We’ve been researched the `@polkadot/extension` source code to have a sense of how the wallet is setup & work, also to better understand the interaction between dapps & extension. SubProfile will be compatible with `@polkadot/extension` API, so knowing its source code to a certain extend would greatly help the development of SubProfile.
-- TODO: Should we start from a fork of `@polkadot/extension`?
 
 - We’ve also been working on a PoC to demonstrate the interaction between dapp & wallet.
     - [Live demo](https://subprofile-dapp.netlify.app/)
@@ -159,12 +160,11 @@ Team members
 | **0b.** | Documentation | We will provide both **inline documentation** of the code, a live demo of the wallet and instruction on how to integrate SubProfile Wallet into dapps using SubProfile SDK. |
 | **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
 | **0d.** | Docker | We will provide a Dockerfile that can be used to test all the functionality delivered with this milestone. |
-| 0e. | Article | We will publish an article that explains SubProfile Wallet concept & what has been done in this milestone |
 | 1. | Wallet App / Core features | We'll implement the following features for the wallet app:<br>- Welcome screen: Shows a small introduction about SubProfile & instructw users to set up the wallet by creating a new one or import from an existing seed phrase.<br>- Unlock wallet: Requires users to enter password to access the wallet<br>- Set up new wallet: Guides users through a screen flow to help setting up their wallet from pick up a wallet password, to back up secret recovery phrase (12 words).<br>- Create account: Creates a new account<br>- List accounts: Lists all of the accounts users have created<br>- Request wallet access: Allows users to approve dapps access to the wallet accounts<br>- Approve transaction: Allows users to sign/approve a transaction  |
 | 2. | SubProfile SDK | We'll implement the SDK to helps [integrate SubProfile into Dapps](#integration-process-into-dapps) & publish the package to npm registry. |
 
 
-### Milestone 2 — Additional features, demo
+### Milestone 2 — Additional features & demo dapp
 
 - **Estimated duration:** 2.5 month
 - **FTE:**  1,5
@@ -176,19 +176,16 @@ Team members
 | **0b.** | Documentation | We will provide both **inline documentation** of the code and a live demo which will show how the new functionality works. |
 | **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
 | **0d.** | Docker | We will provide a Dockerfile that can be used to test all the functionality delivered with this milestone. |
-| 0e. | Article | We will publish an article that explains SubProfile Wallet (what was done/achieved as part of the grant) |
+| 0e. | Article | We will publish an article to introduce SubProfile Wallet, what has been done so far and plans for future development. |
 | 1. | Wallet App / Additional features | We'll implement the following features for the wallet app:<br>- Sign message: Allow users to sign a raw message<br/>- Import existing wallet: Set up wallet by using an existing recovery phrase (seed phrase) or scan QR code from the export wallet feature<br>- Forget wallet password / Reset wallet: Allow users to reset the wallet if they forget the password.<br/>- Account Controls (Forget, Copy address, Show QR Code, Export, Rename, Dapps Access)<br/>- Export wallet: Allow users to easily transfer seed phrase & created accounts to other devices via QR code<br/>- Import account (From: QR Code, Private Key, JSON file)<br/>- Manage Dapps Access: Manage & update access to wallet accounts of dapps<br/>- Settings: Dark/light theme mode, Language, Auto-lock timer, Reveal recovery phrase, Change wallet password |
 | 2. | Demo Dapp | We'll create a demo dapp that is integrated with SubProfile wallet to demonstrate dapp-wallet interactions, similar to [connect.subwallet.app](https://connect.subwallet.app/). |
 
 
 ## Future Plans
 
-Please include here
-
-- how you intend to use, enhance, promote and support your project in the short term, and
-- the team's long-term plans and intentions in relation to it.
-
-> TOTO: Update this
+As mentioned, future plans for SubProfile wallet are to equip with more features that help users manage assets easier:
+- View/send balances, EVM accounts, NFTs, staking, crowdloan, transaction history
+- Attach QR Signer, Support hardware wallets
 
 ## Additional Information :heavy_plus_sign:
 
