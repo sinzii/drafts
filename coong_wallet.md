@@ -1,6 +1,6 @@
-# SubProfile
+# Coong Wallet
 
-- **Team Name:** SubProfile
+- **Team Name:** Coong
 - **Payment Address:** 0xdF14fb4c2F189402b510C603e7f52bf416Fd477B (DAI)
 - **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 2
 
@@ -14,25 +14,25 @@ Polkadot & Kusama ecosystem has seen a few wallet solutions out there with great
 
 As users, we love the website-based wallet experience that the [NEAR wallet](https://wallet.near.org/) bring to the NEAR ecosystem where users can connect to dapps using their favorite browsers and access their wallet smoothly inside the same browser on both desktop & mobile.
 
-With that inspiration, we propose to build SubProfile, a website-based multi-chain wallet, to bring the similar experience to Polkadot & Kusama ecosystem with which we believe it will bring a huge benefits to both users & the ecosystem.
+With that inspiration, we propose to build Coong, a website-based multi-chain wallet, to bring the similar experience to Polkadot & Kusama ecosystem with which we believe it will bring a huge benefits to both users & the ecosystem.
 
 ### Project Details
 
 #### Design Goals
 - Compatible with `@polkadot/extension` API
-    - Most the wallet in the ecosystem are now following `@poladot/extension` API which is widely used now in the ecosystem. So being compatible `@polkadot/extension` API will help dapps can easily integrate with SubProfile within a few steps.
+    - Most the wallet in the ecosystem are now following `@poladot/extension` API which is widely used now in the ecosystem. So being compatible `@polkadot/extension` API will help dapps can easily integrate with Coong within a few steps.
     - The `@polkadot/extension` API allows dapps to call into the wallet to access granted information (connected accounts) as well as asking for permission/approval (request to access accounts, sign transaction, …), dapps can also subscribe to changes happened inside the wallet. Those ability seems to be impossible with the redirection-based approach that the Near wallet is using.
-    - The approach that SubProfile would take is similar to how dapps interact with extension-based wallets which is via `window.postMessage` API.
-        - To access granted information or subscribe to changes from the wallet, dapps will send/receive messages via an iframe loading SubProfile wallet, the iframe will be injected inside dapps via SubProfile SDK
-        - To ask for users’ permission/approval, dapps would open a child tab of SubProfile wallet using `window.open` API, the `window.open` will return a window object of the child tab allowing wallet & dapps to send messages back and forth via `window.postMessage`
-        - We have created a PoC to demonstrate how dapps can interact with a website-based wallet to ask for accounts access & sign dummy data. [Live demo here](https://subprofile-dapp.netlify.app/)
+    - The approach that Coong would take is similar to how dapps interact with extension-based wallets which is via `window.postMessage` API.
+        - To access granted information or subscribe to changes from the wallet, dapps will send/receive messages via an iframe loading Coong wallet, the iframe will be injected inside dapps via Coong SDK
+        - To ask for users’ permission/approval, dapps would open a child tab of Coong wallet using `window.open` API, the `window.open` will return a window object of the child tab allowing wallet & dapps to send messages back and forth via `window.postMessage`
+        - We have created a PoC to demonstrate how dapps can interact with a website-based wallet to ask for accounts access & sign dummy data. [Live demo here](https://coong-dapp.netlify.app/)
 - Security first
-    - We believe a wallet not only should be easy to use but also can secure users’ information. SubProfile is a non-custodial wallet, users’ private keys & seed phrase will be encrypted and stored in `localStorage` of the browsers, and can only be decrypted by users’ wallet password.
+    - We believe a wallet not only should be easy to use but also can secure users’ information. Coong is a non-custodial wallet, users’ private keys & seed phrase will be encrypted and stored in `localStorage` of the browsers, and can only be decrypted by users’ wallet password.
 
 #### Account Creation
-SubProfile is a hierarchical deterministic (HD) wallet following the idea of [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which only requires users to back up only one seed phrase upon setting up the wallet, new accounts will be created by deriving from the setup seed and an account index number as the derivation path (`{seed_phrase}//{index}`), `index` number will be started from `0` and increased one by one as new accounts are created. The first account will be created without derivation path, this is to be compatible with the Polkadot{.js} wallet.
+Coong is a hierarchical deterministic (HD) wallet following the idea of [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which only requires users to back up only one seed phrase upon setting up the wallet, new accounts will be created by deriving from the setup seed and an account index number as the derivation path (`{seed_phrase}//{index}`), `index` number will be started from `0` and increased one by one as new accounts are created. The first account will be created without derivation path, this is to be compatible with the Polkadot{.js} wallet.
 
-SubProfile also supports import accounts by private keys, but those accounts cannot be recovered by the setup seed phrase, so they will be labeled as `Imported Account`.
+Coong also supports import accounts by private keys, but those accounts cannot be recovered by the setup seed phrase, so they will be labeled as `Imported Account`.
 
 #### Integration Process into Dapps
 - Developers need to install SubProfile SDK (`@subprofile/sdk`) into the dapps and run SubProfile wallet initialization upon loading dapps to [inject the SubProfile API](https://github.com/polkadot-js/extension#injection-information).
@@ -157,11 +157,11 @@ Team members
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
 | **0a.** | License | Apache 2.0 |
-| **0b.** | Documentation | We will provide **inline documentation** of the code, a live demo of the wallet and instruction on how to integrate SubProfile Wallet into dapps using SubProfile SDK. |
+| **0b.** | Documentation | We will provide **inline documentation** of the code, a live demo of the wallet and instruction on how to integrate Coong Wallet into dapps using Coong SDK. |
 | **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
 | **0d.** | Docker | We will provide a Dockerfile that can be used to test all the functionality delivered with this milestone. |
-| 1. | Wallet App / Core features | We'll implement the following features for the wallet app:<br>- Welcome screen: Shows a small introduction about SubProfile & instruct users to set up the wallet by creating a new one or import from an existing seed phrase.<br>- Unlock wallet: Requires users to enter password to access the wallet<br>- Set up new wallet: Guides users through a screen flow to help setting up their wallet from pick up a wallet password, to back up secret recovery phrase (12 words).<br>- Create account: Creates a new account<br>- List accounts: Lists all of the accounts users have created<br>- Request wallet access: Allows users to approve dapps access to the wallet accounts<br>- Approve transaction: Allows users to sign/approve a transaction  |
-| 2. | SubProfile SDK | We'll implement the SDK to helps [integrate SubProfile into Dapps](#integration-process-into-dapps) & publish the package to npm registry. |
+| 1. | Wallet App / Core features | We'll implement the following features for the wallet app:<br>- Welcome screen: Shows a small introduction about Coong & instruct users to set up the wallet by creating a new one or import from an existing seed phrase.<br>- Unlock wallet: Requires users to enter password to access the wallet<br>- Set up new wallet: Guides users through a screen flow to help setting up their wallet from pick up a wallet password, to back up secret recovery phrase (12 words).<br>- Create account: Creates a new account<br>- List accounts: Lists all of the accounts users have created<br>- Request wallet access: Allows users to approve dapps access to the wallet accounts<br>- Approve transaction: Allows users to sign/approve a transaction  |
+| 2. | Coong SDK | We'll implement the SDK to helps [integrate Coong into Dapps](#integration-process-into-dapps) & publish the package to npm registry. |
 
 
 ### Milestone 2 — Additional features & demo dapp
@@ -176,14 +176,14 @@ Team members
 | **0b.** | Documentation | We will provide both **inline documentation** of the code and a live demo which will show how the new functionality works. |
 | **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
 | **0d.** | Docker | We will provide a Dockerfile that can be used to test all the functionality delivered with this milestone. |
-| 0e. | Article | We will publish an article to introduce SubProfile Wallet, what has been done so far and plans for future development. |
+| 0e. | Article | We will publish an article to introduce Coong Wallet, what has been done so far and plans for future development. |
 | 1. | Wallet App / Additional features | We'll implement the following features for the wallet app:<br>- Sign message: Allow users to sign a raw message<br/>- Import existing wallet: Set up wallet by using an existing recovery phrase (seed phrase) or scan QR code from the export wallet feature<br>- Forget wallet password / Reset wallet: Allow users to reset the wallet if they forget the password.<br/>- Account Controls (Forget, Copy address, Show QR Code, Export, Rename, Dapps Access)<br/>- Export wallet: Allow users to easily transfer seed phrase & created accounts to other devices via QR code<br/>- Import account (From: QR Code, Private Key, JSON file)<br/>- Manage Dapps Access: Manage & update access to wallet accounts of dapps<br/>- Settings: Dark/light theme mode, Language, Auto-lock timer, Reveal recovery phrase, Change wallet password |
-| 2. | Demo Dapp | We'll create a demo dapp that is integrated with SubProfile wallet to demonstrate dapp-wallet interactions, similar to [connect.subwallet.app](https://connect.subwallet.app/). |
+| 2. | Demo Dapp | We'll create a demo dapp that is integrated with Coong wallet to demonstrate dapp-wallet interactions, similar to [connect.subwallet.app](https://connect.subwallet.app/). |
 
 
 ## Future Plans
 
-As mentioned, future plans for SubProfile wallet are to equip with more features that help users manage assets easier:
+As mentioned, future plans for Coong wallet are to equip with more features that help users manage assets easier:
 - View/send balances, EVM accounts, NFTs, staking, crowdloan, transaction history
 - Attach QR Signer, Support hardware wallets
 
