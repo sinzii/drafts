@@ -1,6 +1,6 @@
 # Coong Wallet
 
-- **Team Name:** Coong
+- **Team Name:** Coong Team
 - **Payment Address:** 0xdF14fb4c2F189402b510C603e7f52bf416Fd477B (DAI)
 - **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 2
 
@@ -124,8 +124,8 @@ We have more than 7 years of experience in software development for startups & e
 
 Projects repos
 
-- https://github.com/coong/wallet
-- https://github.com/coong/sdk
+- https://github.com/CoongNation/coong-wallet
+- https://github.com/CoongNation/coong-sdk
 
 Team members
 
