@@ -35,54 +35,54 @@ Coong is a hierarchical deterministic (HD) wallet following the idea of [BIP32](
 Coong also supports import accounts by private keys, but those accounts cannot be recovered by the setup seed phrase, so they will be labeled as `Imported Account`.
 
 #### Integration Process into Dapps
-- Developers need to install SubProfile SDK (`@subprofile/sdk`) into the dapps and run SubProfile wallet initialization upon loading dapps to [inject the SubProfile API](https://github.com/polkadot-js/extension#injection-information).
-- After the SubProfile API is injected, dapps can interact with SubProfile just like they interact with other extension-based wallets. E.g: calling `window.injectedWeb3['subprofile'].enable()` to request access to the wallet & users’ accounts.
-- `@subprofile/sdk` will be published on npm registry so developers can easily download & integrate to dapps.
+- Developers need to install Coong SDK (`@coong/sdk`) into the dapps and run Coong wallet initialization upon loading dapps to [inject the Coong API](https://github.com/polkadot-js/extension#injection-information).
+- After the Coong API is injected, dapps can interact with Coong just like they interact with other extension-based wallets. E.g: calling `window.injectedWeb3['coong'].enable()` to request access to the wallet & users’ accounts.
+- `@coong/sdk` will be published on npm registry so developers can easily download & integrate to dapps.
 
 #### Vision
-We set a vision for SubProfile to be an important part of Polkadot/Kusama ecosystem with fully-fledge features like view/send balances, EVM accounts, NFTs, staking, crowdloan, transaction history… We will split the development of SubProfile into several phases. This application is asking for grant to support the first development phase.
+We set a vision for Coong to be an important part of Polkadot/Kusama ecosystem with fully-fledge features like view/send balances, EVM accounts, NFTs, staking, crowdloan, transaction history… We will split the development of Coong into several phases. This application is asking for grant to support the first development phase.
 
-The first development phase will be focus on the core/common features of the wallet and the SDK with `@polkadot/extension` compatibility to help dapps easily integrate with SubProfile.
+The first development phase will be focus on the core/common features of the wallet and the SDK with `@polkadot/extension` compatibility to help dapps easily integrate with Coong.
 
 #### Wireframes
 _These are simple wireframes serve as guidance for UI development, the final product might look different._
 
 - Welcome screen
-![image](https://user-images.githubusercontent.com/6867026/207111441-80000a50-61ec-41ba-a7c5-6861fe7b1475.png)
+![image](https://user-images.githubusercontent.com/6867026/208712735-10bc6957-cb69-489c-9bec-c6eaa14e9b39.png)
 
 - Set up new wallet
-![image](https://user-images.githubusercontent.com/6867026/207111541-9b4f8dac-45d9-4a0c-a531-1cfc1afaffe1.png)
+![image](https://user-images.githubusercontent.com/6867026/208712848-1c64adc4-bdc2-41cd-9b71-e10ec1a5c579.png)
 
 - Unlock Wallet
-![image](https://user-images.githubusercontent.com/6867026/207111594-c1e1870b-a1cd-4874-b878-fb3bd69bcce7.png)
+![image](https://user-images.githubusercontent.com/6867026/208713009-48d617e3-85eb-4c33-a21d-a86f546bd616.png)
 
 - List accounts
-![image](https://user-images.githubusercontent.com/6867026/207533626-38ebaeda-3b45-4674-85b7-8281ebcc3453.png)
+![image](https://user-images.githubusercontent.com/6867026/208713099-5e8a5034-350f-4ae1-8b5e-ab17ee7ad440.png)
 
 - Create account
-![image](https://user-images.githubusercontent.com/6867026/207533724-1951706c-5938-46ad-87d4-4de02c098a2f.png)
+![image](https://user-images.githubusercontent.com/6867026/208713186-fef5435b-7d49-4786-ba78-69086e3178ad.png)
 
 - Account controls (Forget, Copy address, Show QR Code, Export, Rename, Dapps Access)
-![image](https://user-images.githubusercontent.com/6867026/207533938-b600fe4d-a2dc-4bac-8e25-8f02285789a0.png)
+![image](https://user-images.githubusercontent.com/6867026/208714226-565fd30d-c460-433a-b3af-4b61ad905ff8.png)
 
 - Sign/Approve Transaction & Message
-![image](https://user-images.githubusercontent.com/6867026/207534309-b0d97872-a9d6-46f9-bd7b-410e2cf2e0fb.png)
+![image](https://user-images.githubusercontent.com/6867026/208714308-b1b7a9b1-bcb1-4cab-9cf3-07c280e81c71.png)
 
 - Request Wallet Access
-![image](https://user-images.githubusercontent.com/6867026/207534529-f5a76e59-f662-47ba-b20f-8d647075eddb.png)
+![image](https://user-images.githubusercontent.com/6867026/208714373-4c785e2c-b968-46e8-b0c6-69f1321553d1.png)
 
 - Other additional features:
     - Export wallet
-    ![image](https://user-images.githubusercontent.com/6867026/207534742-69978e96-5262-4ca2-b7d8-fe699354085b.png)
+    ![image](https://user-images.githubusercontent.com/6867026/208714528-e0998bea-eae9-42d7-894a-3ace1a61229d.png)
 
     - Import account
-    ![image](https://user-images.githubusercontent.com/6867026/207534813-ac3425af-ceff-4a6e-85bb-d159fcc9f58e.png)
+    ![image](https://user-images.githubusercontent.com/6867026/208714641-569c17a7-ba27-4fcd-9ac7-0f8257401620.png)
 
     - Manage Dapps Access
-    ![image](https://user-images.githubusercontent.com/6867026/207534928-00eec8fe-2078-47a2-bc1f-b80773da1bbc.png)
+    ![image](https://user-images.githubusercontent.com/6867026/208714802-851123d7-4c97-4056-8740-3ab688e6bcee.png)
 
     - Settings
-    ![image](https://user-images.githubusercontent.com/6867026/207535025-eb619e5b-8d84-4ec9-a94a-958f895846c7.png)
+    ![image](https://user-images.githubusercontent.com/6867026/208714706-581b34c4-b357-4572-ab15-114ea4388882.png)
 
 
 #### Technology Stack
@@ -91,14 +91,14 @@ _These are simple wireframes serve as guidance for UI development, the final pro
 
 ### Ecosystem Fit
 
-SubProfile is born with the intention to help mitigate the inconsistent wallet experience on desktop & mobile and bring a seamless onboarding new users experience to the Polkadot & Kusama ecosystem.
+Coong is born with the intention to help mitigate the inconsistent wallet experience on desktop & mobile and bring a seamless onboarding new users experience to the Polkadot & Kusama ecosystem.
 
-As discussed above, there’re a few wallet solutions out there in the ecosystem that have great UX/UI but most are extension-based wallet, SubProfile take a different approach as to be a website-based wallet.
+As discussed above, there’re a few wallet solutions out there in the ecosystem that have great UX/UI but most are extension-based wallet, Coong take a different approach as to be a website-based wallet.
 
 [Choko wallet](https://github.com/w3f/Grants-Program/blob/master/applications/choko_wallet.md) is also an other website-based wallet but there’re a few differences:
 
-- Choko wallet took the redirection-based approach like the [NEAR wallet](https://wallet.near.org/) did while SubProfile uses the `window.postMessage` API for cross-tab & cross-origin communication like how dapps interact with extension-based wallets.
-- SubProfile is compatible with `@polkadot/extension` API which is widely adopted in the ecosystem, so dapps can integrate with SubProfile just like how they integrate with extension-based wallets.
+- Choko wallet took the redirection-based approach like the [NEAR wallet](https://wallet.near.org/) did while Coong uses the `window.postMessage` API for cross-tab & cross-origin communication like how dapps interact with extension-based wallets.
+- Coong is compatible with `@polkadot/extension` API which is widely adopted in the ecosystem, so dapps can integrate with Coong just like how they integrate with extension-based wallets.
 
 ## Team :busts_in_silhouette:
 
@@ -124,8 +124,8 @@ We have more than 7 years of experience in software development for startups & e
 
 Projects repos
 
-- https://github.com/subprofile/wallet
-- https://github.com/subprofile/sdk
+- https://github.com/coong/wallet
+- https://github.com/coong/sdk
 
 Team members
 
@@ -134,10 +134,10 @@ Team members
 
 ## Development Status :open_book:
 
-- We’ve been researched the `@polkadot/extension` source code to have a sense of how the wallet is setup & work, also to better understand the interaction between dapps & extension. SubProfile will be compatible with `@polkadot/extension` API, so knowing its source code to a certain extend would greatly help the development of SubProfile.
+- We’ve been researched the `@polkadot/extension` source code to have a sense of how the wallet is setup & work, also to better understand the interaction between dapps & extension. Coong will be compatible with `@polkadot/extension` API, so knowing its source code to a certain extend would greatly help the development of Coong.
 
 - We’ve also been working on a PoC to demonstrate the interaction between dapp & wallet.
-    - [Live demo](https://subprofile-dapp.netlify.app/)
+    - [Live demo](https://coong-dapp.netlify.app/)
     - Source code: [demo-dapp](https://github.com/sinzii/demo-wallet-interaction/tree/main/dapp), [demo-wallet](https://github.com/sinzii/demo-wallet-interaction/tree/main/wallet)
 
 ## Development Roadmap :nut_and_bolt:
