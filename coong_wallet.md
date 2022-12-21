@@ -122,10 +122,7 @@ We have more than 7 years of experience in software development for startups & e
 
 ### Team Code Repos
 
-Projects repos
-
-- https://github.com/CoongCrafts/coong-wallet
-- https://github.com/CoongCrafts/coong-sdk
+Projects repos will be hosted at https://github.com/CoongCrafts
 
 Team members
 
