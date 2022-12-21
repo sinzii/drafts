@@ -1,4 +1,4 @@
-# Coong Wallet
+1# Coong Wallet
 
 - **Team Name:** Coong Team
 - **Payment Address:** 0xdF14fb4c2F189402b510C603e7f52bf416Fd477B (DAI)
@@ -12,7 +12,7 @@ Wallet is a key factor to blockchain technology & cryptocurrencies, it should be
 
 Polkadot & Kusama ecosystem has seen a few wallet solutions out there with great UI/UX (SubWallet, Nova, Talisman, Enkrypt). On desktop, most of the solutions are browser extension-based wallet with which users need to install an extension in order to interact with dapps and networks. On mobile, most of the browsers do not support extensions, so users would need to install wallet mobile apps and then interact with dapp via Dapp Browser build inside the apps (SubWallet, Nova). We believe this creates an inconsistent experience for users on desktop & mobile since most of the dapps are website-based thus posing a barrier in onboarding new users to the ecosystem, especially for those who are new to or less-educated about crypto.
 
-As users, we love the website-based wallet experience that the [NEAR wallet](https://wallet.near.org/) bring to the NEAR ecosystem where users can connect to dapps using their favorite browsers and access their wallet smoothly inside the same browser on both desktop & mobile.
+As users, we love the website-based wallet experience that the [NEAR wallet](https://wallet.near.org/) bring to the NEAR ecosystem where users can connect to dapps using their favorite browsers while at same time can also access their wallet smoothly inside the same browser on both desktop & mobile.
 
 With that inspiration, we propose to build Coong, a website-based multi-chain wallet, to bring the similar experience to Polkadot & Kusama ecosystem with which we believe it will bring a huge benefits to both users & the ecosystem.
 
@@ -23,14 +23,14 @@ With that inspiration, we propose to build Coong, a website-based multi-chain wa
     - Most the wallet in the ecosystem are now following `@poladot/extension` API which is widely used now in the ecosystem. So being compatible `@polkadot/extension` API will help dapps can easily integrate with Coong within a few steps.
     - The `@polkadot/extension` API allows dapps to call into the wallet to access granted information (connected accounts) as well as asking for permission/approval (request to access accounts, sign transaction, …), dapps can also subscribe to changes happened inside the wallet. Those ability seems to be impossible with the redirection-based approach that the Near wallet is using.
     - The approach that Coong would take is similar to how dapps interact with extension-based wallets which is via `window.postMessage` API.
-        - To access granted information or subscribe to changes from the wallet, dapps will send/receive messages via an iframe loading Coong wallet, the iframe will be injected inside dapps via Coong SDK
-        - To ask for users’ permission/approval, dapps would open a child tab of Coong wallet using `window.open` API, the `window.open` will return a window object of the child tab allowing wallet & dapps to send messages back and forth via `window.postMessage`
+        - To access granted information or subscribe to changes from the wallet, dapps will send/receive messages via an iframe loading Coong wallet, the iframe will be injected inside dapps via Coong SDK.
+        - To ask for users’ permission/approval, dapps would open a child tab of Coong wallet using `window.open` API, the `window.open` will return a window object of the child tab allowing wallet & dapps to send messages back and forth via `window.postMessage`.
         - We have created a PoC to demonstrate how dapps can interact with a website-based wallet to ask for accounts access & sign dummy data. [Live demo here](https://coong-dapp.netlify.app/)
 - Security first
-    - We believe a wallet not only should be easy to use but also can secure users’ information. Coong is a non-custodial wallet, users’ private keys & seed phrase will be encrypted and stored in `localStorage` of the browsers, and can only be decrypted by users’ wallet password.
+    - We believe a wallet should not only be easy to use but also can keep users’ information safe and secure. Coong is a non-custodial wallet, users’ private keys & seed phrase will be encrypted and stored in `localStorage` of the browsers, and can only be decrypted by users’ wallet password.
 
 #### Account Creation
-Coong is a hierarchical deterministic (HD) wallet following the idea of [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which only requires users to back up only one seed phrase upon setting up the wallet, new accounts will be created by deriving from the setup seed and an account index number as the derivation path (`{seed_phrase}//{index}`), `index` number will be started from `0` and increased one by one as new accounts are created. The first account will be created without derivation path, this is to be compatible with the Polkadot{.js} wallet.
+Coong is a hierarchical deterministic (HD) wallet following the idea of [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which only requires users to back up only one seed phrase upon setting up the wallet, new accounts will be created by deriving from the setup seed and an account index number as the derivation path (`//{index}`), `index` number will be started from `0` and increased one by one as new accounts are created. The first account will be created without derivation path, this is to be compatible with the Polkadot{.js} wallet.
 
 Coong also supports import accounts by private keys, but those accounts cannot be recovered by the setup seed phrase, so they will be labeled as `Imported Account`.
 
@@ -118,7 +118,7 @@ None
 
 ### Team's experience
 
-We have more than 7 years of experience in software development for startups & enterprises. Seeing the potential of blockchain technologies, we have spent more than 1 year exposing to blockchain and Polakdot & Kusama ecosystem. We closely worked with SubWallet team in helping to review the source code to [improve performance & stability of the wallet](https://github.com/Koniverse/SubWallet-Extension/issues/232). Thang is a participant of the first Polkadot DevCamp in May 2022. We as users also experience the UX problems in Polkadot & Kusama ecosystem. With that, we know where and how to solve these paint points to help bring the ecosystem closer to end-users.
+We have more than 7 years of experience in software development for startups & enterprises. Seeing the potential of blockchain technologies, we have spent more than 1 year exposing to blockchain and Polakdot & Kusama ecosystem. We closely worked with SubWallet team in helping to review the source code to [improve performance & stability of the wallet](https://github.com/Koniverse/SubWallet-Extension/issues/232). Thang is a participant of the first [Polkadot DevCamp in May 2022](https://medium.com/polkadot-network/polkadot-devcamp-1489a1f8eef2). We as users also experience the UX problems in Polkadot & Kusama ecosystem. With that, we know where and how to solve these paint points to help bring the ecosystem closer to end-users.
 
 ### Team Code Repos
 
