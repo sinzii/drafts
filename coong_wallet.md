@@ -124,8 +124,8 @@ We have more than 7 years of experience in software development for startups & e
 
 Projects repos
 
-- https://github.com/CoongNation/coong-wallet
-- https://github.com/CoongNation/coong-sdk
+- https://github.com/CoongCrafts/coong-wallet
+- https://github.com/CoongCrafts/coong-sdk
 
 Team members
 
