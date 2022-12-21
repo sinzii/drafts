@@ -1,4 +1,4 @@
-1# Coong Wallet
+# Coong Wallet
 
 - **Team Name:** Coong Team
 - **Payment Address:** 0xdF14fb4c2F189402b510C603e7f52bf416Fd477B (DAI)
