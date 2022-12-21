@@ -1,7 +1,7 @@
 # Coong Wallet
 
 - **Team Name:** Coong Team
-- **Payment Address:** 0xdF14fb4c2F189402b510C603e7f52bf416Fd477B (DAI)
+- **Payment Address:** 0xdF14fb4c2F189402b510C603e7f52bf416Fd477B (USDT)
 - **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 2
 
 ## Project Overview :page_facing_up:
