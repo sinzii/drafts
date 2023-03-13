@@ -18,12 +18,12 @@
 | -----: | ----------- | ------------- | ------------- |
 | **0a.** | License | [Apache 2.0](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/LICENSE) |
 | **0b.** | Documentation | - [README](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/README.md)<br/>- [Live Demo](https://app.coongwallet.io/)<br/>- [Integration instruction](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/README.md#integrate-coong-wallet-into-your-dapps) |
-| **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
+| **0c.** | Testing and Testing Guide | [How to run tests](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-1#how-to-run-tests) |
 | **0d.** | Docker | - [Dockerfile](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/Dockerfile)<br/>- [How to run the app on Docker](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/README.md#run-it-on-docker) |
 | 1. | Wallet App / Core features | We've implemented the following features for the wallet app:<br/>- [Welcome screen](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/packages/ui/src/components/pages/Welcome.tsx)<br/>- [Unlock wallet](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/packages/ui/src/components/pages/UnlockWallet.tsx)<br/>- [Set up new wallet](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-1/packages/ui/src/components/pages/NewWallet/index.tsx)<br/>- [Create account](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/packages/ui/src/components/shared/NewAccountButton.tsx)<br/>- [List accounts](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/packages/ui/src/components/pages/Accounts/index.tsx)<br/>- [Request wallet access](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/packages/ui/src/components/pages/Request/RequestAccess/index.tsx)<br/>- [Approve transaction](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/packages/ui/src/components/pages/Request/RequestTransactionApproval/index.tsx) |
 | 2. | Coong SDK | - [Source Code](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-1/packages/sdk)<br/> - [@coong/sdk](https://www.npmjs.com/package/@coong/sdk) |
 
 **Additional Information**
-- Known issues
-- Demo app
+- For [Known issues](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-1#known-issues), we plan to address them in the next milestone with a better UX responses to instruct users to disable `Block third-party cookie` setting and allow open Coong Wallet popup.
+- Demo app: https://app.coongwallet.io
 - Demo video
