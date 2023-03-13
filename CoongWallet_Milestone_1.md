@@ -26,7 +26,7 @@
 **Additional Information**
 - For [Known issues](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-1#known-issues), we plan to address them in the next milestone with a better UX responses to instruct users to disable `Block third-party cookie` setting and allow open Coong Wallet popup.
 - Other issues:
-  - Performance: // TODO update
-  - Metadata: // TODO update
+  - Performance: `TODO update`
+  - Metadata: `TODO update`
 - Demo app: https://app.coongwallet.io
 - Demo video
