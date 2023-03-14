@@ -26,8 +26,8 @@
 **Additional Information**
 - For [Known issues](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-1#known-issues), we plan to address them in the next milestone with a better UX responses to instruct users to disable `Block third-party cookie` setting and allow open Coong Wallet popup.
 - Other issues:
-  - Performance: `TODO update`
-  - Metadata: `TODO update`
+  - Metadata: For now, we cannot decode the extrinsic detail information (method data, genesis hash (chain), ...) in the [RequestTransactionApproval](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-1/packages/ui/src/components/pages/Request/RequestTransactionApproval/RequestDetails.tsx) view since we haven't not have metatada information for each chains set up yet, so we'll add a module to pull and manage metadata for each chain in the next milestone.
+  - Performance: Some of Keyring operations ([create account](https://github.com/CoongCrafts/coong-wallet/blob/fef9890fd589d1c68c7d6172db67c5cc89ff853f/packages/ui/src/components/shared/NewAccountButton.tsx#L47), [signing transactions](https://github.com/CoongCrafts/coong-wallet/blob/fef9890fd589d1c68c7d6172db67c5cc89ff853f/packages/ui/src/components/pages/Request/RequestTransactionApproval/index.tsx#L52)) are synchronous and a bit CPU intensive, so browsers might get frozen while performing these actions. A solution to this issue is to move all of these CPU intensive operations to a worker so they would be done in a different thread. We plan to address them in a future milestone after this grant.
 - Demo video:
   - Setup new wallet & accounts
  
