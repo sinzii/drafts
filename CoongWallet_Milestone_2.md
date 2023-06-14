@@ -33,10 +33,5 @@
 - Manage & decode metadata mentioned in [milestone 1 delivery](https://github.com/w3f/Grant-Milestone-Delivery/blob/master/deliveries/CoongWallet-Milestone_1.md), due to timing constraints as we're changing approach to solve the known issues mentioned above, we don't have any extra time left to address this. So we decided to working on this in the future outside the scope of this grant.
 - Import account from Private Key: This feature was mentioned in the proposal but make more senses to implement when we have support for EVM accounts to allow users transfering account using Private Key exported from MetaMask. So we decided to put this on hold until we implement EVM accounts support for the wallet. Let us know if we need to make an amendment PR to remove this from the proposal.
 - Demo videos
-  - Dapp x Wallet Interaction on Desktop
-  
-
-https://github.com/sinzii/w3-grant-draft/assets/6867026/ceb56935-36c9-46f8-8329-c5b7535f3a95
-
-
+  - Dapp x Wallet Interaction on Desktop: https://youtu.be/9fIcAlpx_UI
   - Dapp x Wallet Interaction on Mobile: https://youtu.be/F8S2fmQFRWQ
