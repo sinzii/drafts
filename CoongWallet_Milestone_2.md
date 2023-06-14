@@ -17,7 +17,19 @@
 | 2. | Demo Dapp | - [Source Code](https://github.com/CoongCrafts/playground-dapp)<br/> - https://dapp.coongwallet.io | 🚀 Don't forget to try out the dapp on your mobile/tablet browsers to see the advantage of CoongWallet over extension-based wallets 😃 |
 
 **Additional Information**
-- Known issues
-- Decode metadata
-- Import account from Private Key
+- Known issues mentioned in [Milestone 1](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-1#known-issues)
+  - `Blocking third party cookie issue`: 
+    - Requiring users to disable the "Block third-party cookies" setting in their browser would make the website-based wallet experience (UX, API) similar to extension-based wallets. But this approach poses certain tradeoffs.
+      + Firstly, it violates users' privacy as they likely might not want to disable this setting and be tracked by social media platforms and other services.
+      + Secondly, each browser (both on mobile and desktop) has its own unique method of enabling or disabling this setting. Consequently, providing custom instructions for each browser would complicate the user experience and onboarding process for new users. As our purpose is to create a more user-friendly onboarding experience, we strive to avoid complex instructions during this process.
+    - Therefore, we have decided to take a different approach to address this issue.
+      + We will no longer initiate or append an embedded iframe of the wallet within the dapp, eliminating the need to deal with the "Block third-party cookies" issue.
+      + Instead, we will utilize first-party localStorage (dapp's localStorage) to store granted information (connected accounts). Additionally, we will introduce extra APIs to (1) allow users to add or remove (update) their granted information within the dapp and (2) clear granted information when users want to sign out of the dapp. This alternative approach requires some additional handling for developers during the integration of Coong Wallet into the dapp. However, for users, they will no longer need to toggle browser settings, resulting in a seamless onboarding experience.
+  - `Blocking popups issue` when calling API that opens a Coong Wallet window/popup (asking for user's consent, signing transaction)
+    - This issue might happen for actions that are running asynchronously or take a bit of time to complete.
+    - To prevent this from happening, we introduce an API that allows developers to open a waiting wallet window/popup (`CoongSdk.newWaitingWalletInstance()`) ready to send messages to later, so developers can call this API first thing on users interaction (click/touch) before calling any asynchronous tasks.
+    - More on this can be found [here](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-2#prevent-blocking-popups-issue)
+    - Example integration for [transfering balance](https://github.com/CoongCrafts/playground-dapp/blob/a6072c80fe5dfd263c1b4bcbe44423cdda9798b2/src/components/TransferBalanceButton.tsx#L93-L99), [demo dapp](https://dapp.coongwallet.io/)
+- Manage & decode metadata mentioned in [milestone 1 delivery](https://github.com/w3f/Grant-Milestone-Delivery/blob/master/deliveries/CoongWallet-Milestone_1.md), due to timing constraints as we're changing approach to solve the known issues mentioned above, we don't have any extra time left to address this. So we decided to working on this in the future outside the scope of this grant.
+- Import account from Private Key: This feature was mentioned in the proposal but make more senses to implement when we have support for EVM accounts to allow users transfering account using Private Key exported from MetaMask. So we decided to put this on hold until we implement EVM accounts support for the wallet. Let us know if we need to make an amendment PR to remove this from the proposal.
 - Demo videos
