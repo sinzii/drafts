@@ -9,7 +9,7 @@
 | Number | Deliverable | Link | Notes |
 | -----: | ----------- | ------------- | ------------- |
 | **0a.** | License | [Apache 2.0](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-2/LICENSE) |
-| **0b.** | Documentation | - [README](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-2/README.md)<br/>- [Live Demo](https://app.coongwallet.io/)<br/>- [Example Dapp](https://dapp.coongwallet.io) to demonstrate interactions<br/> - [Integration instruction](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-2/README.md#integrate-coong-wallet-into-your-dapps) |  |
+| **0b.** | Documentation | - [README](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-2/README.md)<br/>- [Live Working Application](https://app.coongwallet.io/)<br/>- [Example Dapp](https://dapp.coongwallet.io) to demonstrate interactions<br/> - [Integration instruction](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-2/README.md#integrate-coong-wallet-into-your-dapps) |  |
 | **0c.** | Testing and Testing Guide | [How to run tests](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-2#how-to-run-tests) |
 | **0d.** | Docker | - [Dockerfile](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-2/Dockerfile)<br/>- [How to run the app on Docker](https://github.com/CoongCrafts/coong-wallet/blob/w3f-milestone-2/README.md#run-it-on-docker) |
 | 0e. | Article | [Link](https://docs.google.com/document/d/1nZUzetDZvLReof3easrRvR5HQSpjags-XShYj55gJEo/edit?usp=sharing) | We're still polishing the content and will publish this article after the milestone is accepted |
@@ -18,7 +18,7 @@
 
 **Additional Information**
 - Known issues mentioned in [Milestone 1](https://github.com/CoongCrafts/coong-wallet/tree/w3f-milestone-1#known-issues)
-  - `Blocking third party cookie issue`: 
+  - `Blocking third party cookies issue`: 
     - Requiring users to disable the "Block third-party cookies" setting in their browser would make the website-based wallet experience (UX, API) similar to extension-based wallets. But this approach poses certain tradeoffs.
       + Firstly, it violates users' privacy as they likely might not want to disable this setting and be tracked by social media platforms and other services.
       + Secondly, each browser (both on mobile and desktop) has its own unique method of enabling or disabling this setting. Consequently, providing custom instructions for each browser would complicate the user experience and onboarding process for new users. As our purpose is to create a more user-friendly onboarding experience, we strive to avoid complex instructions during this process.
