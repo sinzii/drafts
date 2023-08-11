@@ -4,9 +4,9 @@
 - **Payment Address:** 
 - **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 3
 
-## 1. Project Overview :page_facing_up:
+## Project Overview :page_facing_up:
 
-### 1.1 Overview
+### 1 Overview
 Applications have always been a very important part of any blockchain ecosystem, it is where users can connect and interact with networks. [TODO add more arguments to emphasize the important of apps in the ecostem)
 
 `@polkadot/api` has done a great job in helping applications to connect to networks in an easy and effortless way by abstracting away all of the complexities of connecting with a substrate-based blockchain and scale-codec encoding/decoding process under the hood. But through development experience, benchmark and profiling, we found out that `@polkadot/api` has a relative high memory consumption, which might not be problematic for dapps that only connect to one or a few networks, but for dapps that need to connect to dozens or even hundreds of networks at same time, it’s a problem which might impact overall user experience (e.g: a wallet app or portfolio app needs to connect to a hundreds of networks to fetching users’ balances & assets or to listen to on-chain events)
@@ -19,9 +19,9 @@ Applications have always been a very important part of any blockchain ecosystem,
 
 As we’re heading toward a multi-chain future, there will absolutely be more parachains, parathreads or solochains built on Substrate to come, and users might have assets spreading on over a hundred of networks. With that, we do see the need of connecting to a large number of networks at the same time effectively and efficiently, so Coong Crafts propose to build `delightfuldot`, an alternative solution to `@polkadot/api` to address this issue in contributing to the whole effort of paving the way to a multi-chain future of the Polkadot & Kusama ecosystem.
 
-### 1.2 Project Details
+### 2 Project Details
 
-**1.2.1 Why do `@polkadot/api` has a high memory consumption?**
+**2.1 Why do `@polkadot/api` has a high memory consumption?**
 
 We ran memory profiling for a [NodeJS script](https://github.com/sinzii/delightfuldot-poc/blob/main/src/profiles/profile_connect_to_polkadot_via_polkadotapi.ts) to connect to Polkadot network to see how much memory `@polkadot/api` consume during the bootstrapping process (initialization). Below are captures of the results:
 - Result of `Allocation Sampling` profiling via Google Dev Tools
@@ -38,15 +38,15 @@ We tried to build a small [proof of concept alternative solution]([url](https://
 Going further, instead of connecting to 1 network, this time we tried to connect to 20, 50, and 100 network endpoints to fetch balances for an account using `@polkadot/api` and our PoC solution for comparison, and as we can see from the result table, the memory consumption of our PoC solution is significantly smaller.
 - This is the script used for benchmarking: [src/benchmarks/benchmark_connect_multiple_endpoints.ts](https://github.com/sinzii/delightfuldot-poc/blob/main/src/benchmarks/benchmark_connect_multiple_endpoints.ts)
 
-**1.2.2 Design Goals & Approach**
+**2.2 Design Goals & Approach**
 
-_**1.2.2.a API style similar to `@polkadot/api`**_
+_**2.2.a API style similar to `@polkadot/api`**_
 
 `@polkadot/api` is currently using an easy to use and intuitive API style (e.g: `api.query.balances.account(address)` to query account balance, or `api.consts.balances.[constant_name]` to access constants of pallet `Balances`).
 
 So we decided to use the same API style so that users don’t have to learn new syntax when switching to use `delightfuldot` and making the migration progress easier.
 
-_**1.2.2.b Less overhead evaluation**_
+_**2.2.b Less overhead evaluation**_
 
 During the bootstrapping process, `@polkadot/api` will try to register all possible type definitions (ref1, ref2) and expose all available methods/props after decoding the metadata retrieved from a network (ref). This would help making the API execution faster but at the same time making the bootstrapping process longer and increase the overall memory-consumption. Secondly, most of the dapps only makes use of a few APIs and types (e.g: …), the registration all of APIs and types would be unnecessary in most of the cases.
 
@@ -61,7 +61,7 @@ For example, upon calling `api.query.balances.account('5xxxxx...')` to fetching 
 
 Unlike `@polkadot/api` where the first 2 steps are already done in the bootstrapping process. We believe that our approach would help speed up the bootstrapping process, and reduce the overhead memory consumption. We archived this by using a [proxy technique](https://github.com/sinzii/delightfuldot-poc/blob/c52b8fd1dcd1ee82869db9ef7d63366e3307977c/src/poc/delighfuldot.ts#L82-L92), you could find more in detail about it in the PoC repository.
 
-_**1.2.2.c Caching**_
+_**2.2.c Caching**_
 
 Metadata has always been an important part of any Substrate-based blockchain, it’s where we can find all information about on-chain functionalities (pallets, storage, extrinsics, constants, …), but it takes time to encode the metadata retrieved from networks and take space in the memory to store all of the information after decoding the metadata.
 
@@ -69,15 +69,15 @@ Since Metadata is only updated through runtime upgrade, so `delighfuldot` will c
 
 One drawback of this approach is that access speed to storage would be a bit slower than to memory, but given the benefits of the approach, we believe the tradeoffs are acceptable.
 
-**1.2.3 Vision**
+**2.3 Vision**
 
 We set a vision for `delightfuldot` to become an essential part of Polkadot & Kusama ecosystem, so dapps can leverage on its utilities to connect to and interact with hundreds of networks quickly and smoothly without having to think about which network to toggle on or off.
 
 This proposal is asking for a grant to support the first development phase of `delighfuldot` for the foundational modules with core functionalities and compatibility layer with `@polkadot/api`. More details are in the upcoming section.
 
-**1.2.4 What to build**
+**2.4 What to build**
 
-_**1.2.4.a Foundational modules with core functionalities**_
+_**2.4.a Foundational modules with core functionalities**_
 
 This step, we aim to lay out all the necessary foundational pieces of the library and putting all of them together to form the core functionalities, including:
 
@@ -95,47 +95,54 @@ This step, we aim to lay out all the necessary foundational pieces of the librar
     - Sign and submit extrinsics
     - Inspect pallet’s events & errors
 
-_**1.2.4.b Compatibility layer with `@polkadot/api`**_
+_**2.4.b Compatibility layer with `@polkadot/api`**_
 
 This is a layer built on top of the foundational modules to allows `delightfuldot` to easily switch between `@polkadot/api`'s type system and its own type system.
 
 With the similar API style and ability to use the `@polkadot/api`'s type system, this would help the migration process from `@polkadot/api` to `delightfuldot` easily and smoothly and open the access to the already built custom types for parachains & other custom substrate-based chains and all the helpful derived APIs from `api-derive` package.
 
+**2.5 Tech Stacks**
+- Typescript
+- subShape (formerly: scale-ts), rxjs
+- Helpful packages from `@polkadot/api`, `@polkadot/common`
+
 ### Ecosystem Fit
+`delightfuldot` fits perfectly in the Polkadot & Kusama ecosystems as it provides a solution to a critical issue faced by dApps that need to connect to and interact with hundreds of networks efficiently & effectively. Any dApps that need to connect to a large number of networks can benefit from `delightfuldot`'s utilities (e.g wallet apps, portfolio apps)
+
+We as the maintainer of [Coong Wallet](https://grants.web3.foundation/applications/coong_wallet) see that `delightfuldot` is a stepping stone to the next development phase of Coong Wallet with more & more useful features.
+
+Aside from `@polkadot/api`, [`capi`](https://github.com/paritytech/capi) is another project to help craft interactions with Substrate-based blockchain, but at the time of writing this proposal, it’s going through a big restructuring, we’re not sure what would it look like until its shape be more concrete. Overall we don’t see any noticeable projects that are trying to solve the same problems as us.
 
 ## Team :busts_in_silhouette:
 
 ### Team members
 
-- Name of team leader
-- Names of team members
+- Thang X. Vu (Team Leader)
+- Tung Vu
 
 ### Contact
 
-- **Contact Name:** Full name of the contact person in your team
-- **Contact Email:** Contact email (e.g. john@duo.com)
-- **Website:** Your website
+- **Contact Name:** Thang X. Vu
+- **Contact Email:** thang@coongcrafts.io
 
 ### Legal Structure
 
-- **Registered Address:** Address of your registered legal entity, if available. Please keep it in a single line. (e.g. High Street 1, London LK1 234, UK)
-- **Registered Legal Entity:** Name of your registered legal entity, if available. (e.g. Duo Ltd.)
+N/A yet
 
 ### Team's experience
 
 Please describe the team's relevant experience. If your project involves development work, we would appreciate it if you singled out a few interesting projects or contributions made by team members in the past. 
 
 If anyone on your team has applied for a grant at the Web3 Foundation previously, please list the name of the project and legal entity here.
+- Coong Wallet
 
 ### Team Code Repos
 
-- https://github.com/<your_organisation>/<project_1>
-- https://github.com/<your_organisation>/<project_2>
+Project repositories will be hosted at https://github.com/CoongCrafts
 
-Please also provide the GitHub accounts of all team members. If they contain no activity, references to projects hosted elsewhere or live are also fine.
-
-- https://github.com/<team_member_1>
-- https://github.com/<team_member_2>
+Team members
+- Thang X. Vu - https://github.com/sinzii
+- Tung Vu - https://github.com/1cedrus
 
 ### Team LinkedIn Profiles (if available)
 
@@ -145,13 +152,9 @@ Please also provide the GitHub accounts of all team members. If they contain no 
 
 ## Development Status :open_book:
 
-If you've already started implementing your project or it is part of a larger repository, please provide a link and a description of the code here. In any case, please provide some documentation on the research and other work you have conducted before applying. This could be:
-
-- links to improvement proposals or [RFPs](https://github.com/w3f/Grants-Program/tree/master/docs/RFPs) (requests for proposal),
-- academic publications relevant to the problem,
-- links to your research diary, blog posts, articles, forum discussions or open GitHub issues,
-- references to conversations you might have had related to this project with anyone from the Web3 Foundation,
-- previous interface iterations, such as mock-ups and wireframes.
+- Research `@polkadot/api`
+- Benchmarking & profiling
+- Build proof of concept solution
 
 ## Development Roadmap :nut_and_bolt:
 
@@ -206,11 +209,6 @@ Please include here
 - how you intend to use, enhance, promote and support your project in the short term, and
 - the team's long-term plans and intentions in relation to it.
 
-## Referral Program (optional) :moneybag: 
-
-You can find more information about the program [here](../README.md#moneybag-referral-program).
-- **Referrer:** Name of the Polkadot Ambassador or GitHub account of the Web3 Foundation grantee
-- **Payment Address:** BTC, Ethereum (USDC/DAI) or Polkadot/Kusama (USDT) payment address. Please also specify the currency. (e.g. 0x8920... (DAI))
 
 ## Additional Information :heavy_plus_sign:
 
