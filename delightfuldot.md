@@ -4,13 +4,102 @@
 - **Payment Address:** 
 - **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 3
 
-## Project Overview :page_facing_up:
+## 1. Project Overview :page_facing_up:
 
-### Overview
+### 1.1 Overview
+Applications have always been a very important part of any blockchain ecosystem, it is where users can connect and interact with networks. [TODO add more arguments to emphasize the important of apps in the ecostem)
 
+`@polkadot/api` has done a great job in helping applications to connect to networks in an easy and effortless way by abstracting away all of the complexities of connecting with a substrate-based blockchain and scale-codec encoding/decoding process under the hood. But through development experience, benchmark and profiling, we found out that `@polkadot/api` has a relative high memory consumption, which might not be problematic for dapps that only connect to one or a few networks, but for dapps that need to connect to dozens or even hundreds of networks at same time, it’s a problem which might impact overall user experience (e.g: a wallet app or portfolio app needs to connect to a hundreds of networks to fetching users’ balances & assets or to listen to on-chain events)
 
-### Project Details
+- If we enable all 100+ Substrate networks on SubWallet, it could increase the memory consumption to over a GB of RAM.
+<img width="680" alt="image" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/fb9f909d-f466-467e-8a1b-6959e1464c2a">
 
+- Talisman is having their own solution for connecting to networks and fetching balances effectively without relying on `@polkadot/api` ([@talismn/balances](https://github.com/TalismanSociety/talisman/tree/dev/packages/balances)**,** [@talismn/api](https://github.com/TalismanSociety/api))
+- We ran [a NodeJS script](https://github.com/sinzii/delightfuldot-poc/blob/main/src/benchmarks/benchmark_connect_multiple_endpoints.ts) that connects to 100 substrate-based network endpoints to fetch balances for an account, the overall memory consumption is ~900MB. More details are in the benchmarking section below.
+
+As we’re heading toward a multi-chain future, there will absolutely be more parachains, parathreads or solochains built on Substrate to come, and users might have assets spreading on over a hundred of networks. With that, we do see the need of connecting to a large number of networks at the same time effectively and efficiently, so Coong Crafts propose to build `delightfuldot`, an alternative solution to `@polkadot/api` to address this issue in contributing to the whole effort of paving the way to a multi-chain future of the Polkadot & Kusama ecosystem.
+
+### 1.2 Project Details
+
+**1.2.1 Why do `@polkadot/api` has a high memory consumption?**
+
+We ran memory profiling for a [NodeJS script](https://github.com/sinzii/delightfuldot-poc/blob/main/src/profiles/profile_connect_to_polkadot_via_polkadotapi.ts) to connect to Polkadot network to see how much memory `@polkadot/api` consume during the bootstrapping process (initialization). Below are captures of the results:
+- Result of `Allocation Sampling` profiling via Google Dev Tools
+<img width="680" alt="image" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/24adc5f5-6394-4705-8586-d487dc1d5f35">
+
+- Result of `Allocation instrumentation on timeline` profiling via Google Dev Tools
+<img width="680" alt="image" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/822b9096-1688-4d6f-a36a-d9a54331fb83">
+
+From the results, we can see that the memory consumption from `Metadata` and its types system are relatively high. As we looked into the source code itself, we found out that `@polkadot/api` has its own types and structure for every piece in the metadata, during the decoding process it will create types for all of the pieces in the metadata hierarchy/structure which result in the lot of `Type` objects and a big `Metadata` object (`PortableRegistry` is a part of the Metadata)
+
+We tried to build a small [proof of concept alternative solution]([url](https://github.com/sinzii/delightfuldot-poc/blob/main/src/poc/delighfuldot.ts)) using `scale-ts` (now `subShape`) for scale-codec encoding to do the same functionality and the memory consumption has improved noticeably.
+<img width="680" alt="image" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/71374ff9-db78-43ce-aef6-b26e44747f22">
+
+Going further, instead of connecting to 1 network, this time we tried to connect to 20, 50, and 100 network endpoints to fetch balances for an account using `@polkadot/api` and our PoC solution for comparison, and as we can see from the result table, the memory consumption of our PoC solution is significantly smaller.
+- This is the script used for benchmarking: [src/benchmarks/benchmark_connect_multiple_endpoints.ts](https://github.com/sinzii/delightfuldot-poc/blob/main/src/benchmarks/benchmark_connect_multiple_endpoints.ts)
+
+**1.2.2 Design Goals & Approach**
+
+_**1.2.2.a API style similar to `@polkadot/api`**_
+
+`@polkadot/api` is currently using an easy to use and intuitive API style (e.g: `api.query.balances.account(address)` to query account balance, or `api.consts.balances.[constant_name]` to access constants of pallet `Balances`).
+
+So we decided to use the same API style so that users don’t have to learn new syntax when switching to use `delightfuldot` and making the migration progress easier.
+
+_**1.2.2.b Less overhead evaluation**_
+
+During the bootstrapping process, `@polkadot/api` will try to register all possible type definitions (ref1, ref2) and expose all available methods/props after decoding the metadata retrieved from a network (ref). This would help making the API execution faster but at the same time making the bootstrapping process longer and increase the overall memory-consumption. Secondly, most of the dapps only makes use of a few APIs and types (e.g: …), the registration all of APIs and types would be unnecessary in most of the cases.
+
+`delighfuldot`'s approach is to perform API evaluation and execution on the fly, which is at the time an API is called, `delighfuldot` will check if the API is existed or not, register all necessary types (and cache those types if possible), execute the API and then handle the response.
+
+For example, upon calling `api.query.balances.account('5xxxxx...')` to fetching balances for an account, `delightfuldot` will do the following steps:
+ - Check if the pallet named `Balances` is existed in the metadata, else throw an error.
+ - Check if the storage entry named `Account` is existed in the metadata, else throw an error.
+ - Gather all of the necessary information to perform a storage query through an RPC `state_getStorage` like input types, output type, calculate storage entry hash …
+ - Execute RPC `state_getStorage` with the calculated storage entry hash
+ - Decode the response with output type and return the decoded data.
+
+Unlike `@polkadot/api` where the first 2 steps are already done in the bootstrapping process. We believe that our approach would help speed up the bootstrapping process, and reduce the overhead memory consumption. We archived this by using a [proxy technique](https://github.com/sinzii/delightfuldot-poc/blob/c52b8fd1dcd1ee82869db9ef7d63366e3307977c/src/poc/delighfuldot.ts#L82-L92), you could find more in detail about it in the PoC repository.
+
+_**1.2.2.c Caching**_
+
+Metadata has always been an important part of any Substrate-based blockchain, it’s where we can find all information about on-chain functionalities (pallets, storage, extrinsics, constants, …), but it takes time to encode the metadata retrieved from networks and take space in the memory to store all of the information after decoding the metadata.
+
+Since Metadata is only updated through runtime upgrade, so `delighfuldot` will cache the decoded metadata information in the device’s storage (localStorage, IndexedDB, …) and only check to update it on runtime upgrade. This would also help speed up the bootstrapping process and reduce the memory consumption since the metadata is now stored on the device’s storage.
+
+One drawback of this approach is that access speed to storage would be a bit slower than to memory, but given the benefits of the approach, we believe the tradeoffs are acceptable.
+
+**1.2.3 Vision**
+
+We set a vision for `delightfuldot` to become an essential part of Polkadot & Kusama ecosystem, so dapps can leverage on its utilities to connect to and interact with hundreds of networks quickly and smoothly without having to think about which network to toggle on or off.
+
+This proposal is asking for a grant to support the first development phase of `delighfuldot` for the foundational modules with core functionalities and compatibility layer with `@polkadot/api`. More details are in the upcoming section.
+
+**1.2.4 What to build**
+
+_**1.2.4.a Foundational modules with core functionalities**_
+
+This step, we aim to lay out all the necessary foundational pieces of the library and putting all of them together to form the core functionalities, including:
+
+- New type system built on top of `subShape` with less memory consumption while at the same time can easily switch to use `@polkadot/api`'s type system for easy migration from existing dapps.
+- A metadata parser with ability to decode & encode Metadata using scale-codec. In the scope of this grant, we plan to support the latest version of metadata which is v14.
+- Ability to execute RPC to a substrate node
+    - Each blockchain has its own custom list of supported RPCs, in the scope of this grant we plan to implement the supported RPCs of [Polkadot](https://polkadot.js.org/docs/polkadot/rpc) & [Kusama](https://polkadot.js.org/docs/kusama/rpc) networks.
+    - Support registering custom RPCs, so developers can easily add custom RPCs for their custom substrate node.
+- Ability to execute Runtime APIs
+    - Similar to RPCs, each substrate-based blockchain has its own list of supported Runtime APIs, so in the scope of this grant, we plan to implement the supported Runtime APIs of [Polkadot](https://polkadot.js.org/docs/polkadot/runtime) and [Kusama](https://polkadot.js.org/docs/kusama/runtime) networks.
+    - Support registering custom Runtime APIs
+- With the format of Metadata V14, on-chain functionalities are exposed through pallet’s definitions including pallet’s constants, storage entries, extrinsic calls, events & errors. We plan to support abilities to:
+    - Inspect pallet’s constants
+    - Execute pallet’s storage queries
+    - Sign and submit extrinsics
+    - Inspect pallet’s events & errors
+
+_**1.2.4.b Compatibility layer with `@polkadot/api`**_
+
+This is a layer built on top of the foundational modules to allows `delightfuldot` to easily switch between `@polkadot/api`'s type system and its own type system.
+
+With the similar API style and ability to use the `@polkadot/api`'s type system, this would help the migration process from `@polkadot/api` to `delightfuldot` easily and smoothly and open the access to the already built custom types for parachains & other custom substrate-based chains and all the helpful derived APIs from `api-derive` package.
 
 ### Ecosystem Fit
 
