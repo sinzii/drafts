@@ -32,7 +32,7 @@ We ran memory profiling for a [NodeJS script](https://github.com/sinzii/delightf
 
 From the results, we can see that the memory consumption from `Metadata` and its types system are relatively high. As we looked into the source code itself, we found out that `@polkadot/api` has its own types and structure for every piece in the metadata, during the decoding process it will create types for all of the pieces in the metadata hierarchy/structure which result in the lot of `Type` objects and a big `Metadata` object ([`PortableRegistry` is a part of the Metadata](https://github.com/polkadot-js/api/blob/319535a1e938e89522ff18ef2d1cef66a5af597c/packages/types/src/interfaces/metadata/v14.ts#L43-L47))
 
-We tried to build a small [proof of concept alternative solution]([url](https://github.com/sinzii/delightfuldot-poc/blob/main/src/poc/delighfuldot.ts)) using `scale-ts` (now `subShape`) for scale-codec encoding to do the same functionality and the memory consumption has improved noticeably.
+We tried to build a small [proof of concept alternative solution]([url](https://github.com/sinzii/delightfuldot-poc/blob/main/src/poc/delighfuldot.ts)) using [`scale-ts`](https://github.com/paritytech/scale-ts) (now `subShape`) for scale-codec encoding to do the same functionality and the memory consumption has improved noticeably.
 <img width="680" alt="image" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/71374ff9-db78-43ce-aef6-b26e44747f22">
 
 Going further, instead of connecting to 1 network, this time we tried to connect to 20, 50, and 100 network endpoints to fetch balances for an account using `@polkadot/api` and our PoC solution for comparison, and as we can see from the result table, the memory consumption of our PoC solution is significantly smaller.
@@ -169,12 +169,8 @@ Team members
 | **0a.** | License | Apache 2.0 / GPLv3 / MIT / Unlicense |
 | **0b.** | Documentation | We will provide both **inline documentation** of the code and a basic **tutorial** that explains how a user can (for example) spin up one of our Substrate nodes and send test transactions, which will show how the new functionality works. |
 | **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
-| 1. | Substrate module: X | We will create a Substrate module that will... (Please list the functionality that will be implemented for the first milestone. You can refer to details provided in previous sections.) |
-| 2. | Substrate module: Y | The Y Substrate module will... |
-| 3. | Substrate module: Z | The Z Substrate module will... |
-| 4. | Substrate chain | Modules X, Y & Z of our custom chain will interact in such a way... (Please describe the deliverable here as detailed as possible) |
-| 5. | Library: ABC | We will deliver a JS library that will implement the functionality described under "ABC Library" |
-| 6. | Smart contracts: ... | We will deliver a set of ink! smart contracts that will...
+| 1. | Core functionalities
+| 2. | Publish to npm
 
 
 ### Milestone 2 - Core functionalities + @polkadot/api compatibility layer
@@ -183,6 +179,13 @@ Team members
 - **FTE:**  2
 - **Costs:** 20,000 USD
 
+| Number | Deliverable | Specification |
+| -----: | ----------- | ------------- |
+| **0a.** | License | Apache 2.0 / GPLv3 / MIT / Unlicense |
+| **0b.** | Documentation | We will provide both **inline documentation** of the code and a basic **tutorial** that explains how a user can (for example) spin up one of our Substrate nodes and send test transactions, which will show how the new functionality works. |
+| **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
+| 1. | More core functionalities
+| 2. | `@polkadot/api` compatibility layer
 
 ## Future Plans
 
