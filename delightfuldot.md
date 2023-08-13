@@ -109,7 +109,7 @@ With the similar API style and ability to use the `@polkadot/api`'s type system,
 ### Ecosystem Fit
 `delightfuldot` fits perfectly in the Polkadot & Kusama ecosystems as it provides a solution to a critical issue faced by dApps that need to connect to and interact with hundreds of networks efficiently & effectively. Any dApps that need to connect to a large number of networks can benefit from `delightfuldot`'s utilities (e.g wallet apps, portfolio apps)
 
-We as the maintainer of [Coong Wallet](https://grants.web3.foundation/applications/coong_wallet) see that `delightfuldot` is a stepping stone to the next development phase of Coong Wallet with more & more useful features.
+We as the maintainer of [Coong Wallet](https://grants.web3.foundation/applications/coong_wallet) see that `delightfuldot` is a stepping stone to the next development phase of Coong Wallet with more & more useful features in which Coong Wallet would need to connect to a large number of Substrate-based networks to fetching information.
 
 Aside from `@polkadot/api`, [`capi`](https://github.com/paritytech/capi) is another project to help craft interactions with Substrate-based blockchain, but at the time of writing this proposal, it’s going through a big restructuring, we’re not sure what would it look like until its shape be more concrete. Overall we don’t see any noticeable projects that are trying to solve the same problems as us.
 
@@ -131,7 +131,7 @@ N/A yet
 
 ### Team's experience
 
-Please describe the team's relevant experience. If your project involves development work, we would appreciate it if you singled out a few interesting projects or contributions made by team members in the past. 
+We have more than 7 years of experience in software development for startups & enterprises. Seeing the potential of blockchain technologies, we have spent more than 1 year exposing to blockchains and Polakdot & Kusama ecosystem. We closely worked with SubWallet team in helping to review the source code to improve performance & stability of the wallet. Thang is a participant of the first Polkadot DevCamp in May 2022. We as users also experience the UX problems in Polkadot & Kusama ecosystem. With that, we know where and how to solve these paint points to help bring the ecosystem closer to end-users.
 
 If anyone on your team has applied for a grant at the Web3 Foundation previously, please list the name of the project and legal entity here.
 - Coong Wallet
@@ -144,12 +144,6 @@ Team members
 - Thang X. Vu - https://github.com/sinzii
 - Tung Vu - https://github.com/1cedrus
 
-### Team LinkedIn Profiles (if available)
-
-- https://www.linkedin.com/<person_1>
-- https://www.linkedin.com/<person_2>
-
-
 ## Development Status :open_book:
 
 - Research `@polkadot/api`
@@ -158,33 +152,23 @@ Team members
 
 ## Development Roadmap :nut_and_bolt:
 
-This section should break the development roadmap down into milestones and deliverables. To assist you in defining it, we have created a document with examples for some grant categories [here](../docs/Support%20Docs/grant_guidelines_per_category.md). Since these will be part of the agreement, it helps to describe _the functionality we should expect in as much detail as possible_, plus how we can verify and test that functionality. Whenever milestones are delivered, we refer to this document to ensure that everything has been delivered as expected.
-
-Below we provide an **example roadmap**. In the descriptions, it should be clear how your project is related to Substrate, Kusama or Polkadot. We _recommend_ that teams structure their roadmap as 1 milestone ≈ 1 month.
-
-> :exclamation: If any of your deliverables is based on somebody else's work, make sure you work and publish _under the terms of the license_ of the respective project and that you **highlight this fact in your milestone documentation** and in the source code if applicable! **Teams that submit others' work without attributing it will be immediately terminated.**
-
 ### Overview
 
-- **Total Estimated Duration:** Duration of the whole project (e.g. 2 months)
-- **Full-Time Equivalent (FTE):**  Average number of full-time employees working on the project throughout its duration (see [Wikipedia](https://en.wikipedia.org/wiki/Full-time_equivalent), e.g. 2 FTE)
-- **Total Costs:** Requested amount in USD for the whole project (e.g. 12,000 USD). Note that the acceptance criteria and additional benefits vary depending on the [level](../README.md#level_slider-levels) of funding requested. This and the costs for each milestone need to be provided in USD; if the grant is paid out in Bitcoin, the amount will be calculated according to the exchange rate at the time of payment.
+- **Total Estimated Duration:** 4.5 months
+- **Full-Time Equivalent (FTE):**  2 FTE
+- **Total Costs:** 45,000 USD
 
-### Milestone 1 Example — Basic functionality
+### Milestone 1 — Foundational modules with core functionalities
 
-- **Estimated duration:** 1 month
-- **FTE:**  1,5
-- **Costs:** 8,000 USD
-
-> :exclamation: **The default deliverables 0a-0d below are mandatory for all milestones**, and deliverable 0e at least for the last one. 
+- **Estimated duration:** 2.5 month
+- **FTE:**  2
+- **Costs:** 25,000 USD
 
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
 | **0a.** | License | Apache 2.0 / GPLv3 / MIT / Unlicense |
 | **0b.** | Documentation | We will provide both **inline documentation** of the code and a basic **tutorial** that explains how a user can (for example) spin up one of our Substrate nodes and send test transactions, which will show how the new functionality works. |
 | **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
-| **0d.** | Docker | We will provide a Dockerfile(s) that can be used to test all the functionality delivered with this milestone. |
-| 0e. | Article | We will publish an **article**/workshop that explains [...] (what was done/achieved as part of the grant). (Content, language and medium should reflect your target audience described above.) |
 | 1. | Substrate module: X | We will create a Substrate module that will... (Please list the functionality that will be implemented for the first milestone. You can refer to details provided in previous sections.) |
 | 2. | Substrate module: Y | The Y Substrate module will... |
 | 3. | Substrate module: Z | The Z Substrate module will... |
@@ -193,21 +177,17 @@ Below we provide an **example roadmap**. In the descriptions, it should be clear
 | 6. | Smart contracts: ... | We will deliver a set of ink! smart contracts that will...
 
 
-### Milestone 2 Example — Additional features
+### Milestone 2 - Core functionalities + @polkadot/api compatibility layer
 
-- **Estimated Duration:** 1 month
-- **FTE:**  1,5
-- **Costs:** 8,000 USD
-
-...
+- **Estimated Duration:** 2 month
+- **FTE:**  2
+- **Costs:** 20,000 USD
 
 
 ## Future Plans
 
-Please include here
-
-- how you intend to use, enhance, promote and support your project in the short term, and
-- the team's long-term plans and intentions in relation to it.
+- Smart Contract
+- XCM
 
 
 ## Additional Information :heavy_plus_sign:
