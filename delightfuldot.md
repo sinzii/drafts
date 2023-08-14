@@ -145,9 +145,8 @@ Team members
 
 ## Development Status :open_book:
 
-- Research `@polkadot/api`
-- Benchmarking & profiling
-- Build proof of concept solution
+- We have been in research the `@polkadot/api` project to learn how it works under the hood as well as doing benchmarking & profiling to figure out why it has a high memory consumption.
+- We have been building a [proof-of-concept solution](https://github.com/sinzii/delightfuldot-poc/blob/main/src/poc/delightfuldot.ts) in an attempt to address the memory issue and saw a clear/good improvement.
 
 ## Development Roadmap :nut_and_bolt:
 
@@ -180,7 +179,7 @@ Team members
 
 | Number | Deliverable | Specification |
 | -----: | ----------- | ------------- |
-| **0a.** | License | Apache 2.0 / GPLv3 / MIT / Unlicense |
+| **0a.** | License | Apache 2.0 |
 | **0b.** | Documentation | We will provide both **inline documentation** of the code and a basic **tutorial** that explains how sign & submit extrinsics via `delightfuldot` and the migration process from `@polkadot/api` to `delightfuldot`  |
 | **0c.** | Testing and Testing Guide | Core functions will be fully covered by comprehensive unit tests to ensure functionality and robustness. In the guide, we will describe how to run these tests. |
 | 1. | More core functionalities | We'll add APIs to creating Extrinsics payload, sign and submit Extrinsics as well as the ability to keep watching for Extrinsic status.
