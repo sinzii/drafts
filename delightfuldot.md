@@ -15,7 +15,7 @@ Dapps have always been a very important part of any blockchain ecosystem, it is 
 <img width="680" alt="image" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/fb9f909d-f466-467e-8a1b-6959e1464c2a">
 
 - Talisman is having their own solution for connecting to networks and fetching balances effectively without relying on `@polkadot/api` ([@talismn/balances](https://github.com/TalismanSociety/talisman/tree/dev/packages/balances)**,** [@talismn/api](https://github.com/TalismanSociety/api)).
-- We ran [a NodeJS script](https://github.com/sinzii/delightfuldot-poc/blob/main/src/benchmarks/benchmark_connect_multiple_endpoints.ts) that connects to 100 substrate-based network endpoints to fetch balances for an account, and the average memory consumption is over 800MB. More details about the benchmark results could be found [here](https://github.com/sinzii/delightfuldot-poc/tree/main#memory-consumption-benchmark-result).
+- We ran [a NodeJS script](https://github.com/sinzii/delightfuldot-poc/blob/main/src/benchmarks/benchmark_connect_multiple_endpoints.ts) that connects to 100 substrate-based network endpoints to fetch balances for an account using `@polkadot/api`, and the average memory consumption is over 800MB. More details about the benchmark results could be found [here](https://github.com/sinzii/delightfuldot-poc/tree/main#memory-consumption-benchmark-result).
 
 As we’re heading toward a multi-chain future, there will absolutely be more parachains, parathreads or solochains built on Substrate to come, and users might have assets spreading over dozens or hundreds of networks. With that, we do see the need of connecting to a large number of networks at the same time effectively and efficiently, Coong Crafts propose to build `delightfuldot`, an alternative solution to `@polkadot/api` to address this issue in contributing to the whole effort of paving the way to a multi-chain future of the Polkadot & Kusama ecosystem.
 
@@ -130,10 +130,7 @@ N/A yet
 
 ### Team's experience
 
-We have more than 7 years of experience in software development for startups & enterprises. Seeing the potential of blockchain technologies, we have spent more than 1 year exposing to blockchains and Polakdot & Kusama ecosystem. We closely worked with SubWallet team in helping to review the source code to improve performance & stability of the wallet. Thang is a participant of the first Polkadot DevCamp in May 2022. We as users also experience the UX problems in Polkadot & Kusama ecosystem. With that, we know where and how to solve these paint points to help bring the ecosystem closer to end-users.
-
-If anyone on your team has applied for a grant at the Web3 Foundation previously, please list the name of the project and legal entity here.
-- Coong Wallet
+Coong Crafts is a small team set out with a mission to bring Web3 closer to the world. We previously completed a grant to build [Coong Wallet](https://grants.web3.foundation/applications/coong_wallet) ([PR](https://github.com/w3f/Grants-Program/pull/1387)), a website-based wallet solution to address to inconsistent experience mobile & desktop and bring a new approach to onboard new users to Polkadot & Kusama ecosystem.
 
 ### Team Code Repos
 
@@ -146,7 +143,7 @@ Team members
 ## Development Status :open_book:
 
 - We have been in research the `@polkadot/api` project to learn how it works under the hood as well as doing benchmarking & profiling to figure out why it has a high memory consumption.
-- We have been building a [proof-of-concept solution](https://github.com/sinzii/delightfuldot-poc/blob/main/src/poc/delightfuldot.ts) in an attempt to address the memory issue and saw a clear/good improvement.
+- We have been building a [proof-of-concept solution](https://github.com/sinzii/delightfuldot-poc/blob/main/src/poc/delightfuldot.ts) in an attempt to address the memory issue and saw a [clear/good improvement](https://github.com/sinzii/delightfuldot-poc/tree/main#memory-consumption-benchmark-result).
 
 ## Development Roadmap :nut_and_bolt:
 
