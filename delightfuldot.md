@@ -184,6 +184,8 @@ Team members
 
 ## Future Plans
 
-- Smart Contract
-- XCM
-
+Next steps for `delightfuldot` are:
+- Support APIs to interact with Smart Contract
+- Support older versions of Metadata (if necessary)
+- Support more [RPC](https://polkadot.js.org/docs/substrate/rpc) and [Runtime](https://polkadot.js.org/docs/substrate/runtime)https://polkadot.js.org/docs/substrate/runtime APIs
+- XCM utilities
