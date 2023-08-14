@@ -53,7 +53,7 @@ During the bootstrapping process, `@polkadot/api` will try to register all possi
 
 For example, upon calling `api.query.system.account('5xxxxx...')` to fetching balances for an account, `delightfuldot` will do the following steps:
  - Check if the pallet named `System` is existed in the metadata, else throw an error.
- - Check if the storage entry named `Account` is existed in the metadata, else throw an error.
+ - Check if the storage entry named `Account` is existed in the pallet `System` in the metadata, else throw an error.
  - Gather all the necessary information to perform a storage query through an RPC `state_getStorage` like input types, output type, calculate storage entry hash …
  - Execute RPC `state_getStorage` with the calculated storage entry hash
  - Decode the response with the output type and return the decoded data.
