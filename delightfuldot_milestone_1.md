@@ -8,18 +8,11 @@
 **Deliverables**
 | Number | Deliverable | Link | Notes |
 | ------------- | ------------- | ------------- |------------- |
-| 1. | ... |...| ...| 
-| 2.  | ... |...| ...| 
-
-
-
-| Number | Deliverable | Link | Notes |
-| ------------- | ------------- | ------------- |------------- |
-| **0a.** | License | Apache 2.0 |  |
-| **0b.** | Documentation |  |  |
-| **0c.** | Testing and Testing Guide |  |  |
-| 1. | Core functionalities |  |  |
-| 2. | Publish to npm |   |  |
+| **0a.** | License | [Apache 2.0](https://github.com/CoongCrafts/delightfuldot/blob/w3f-delivery/m1/LICENSE) |  |
+| **0b.** | Documentation | - [README](https://github.com/CoongCrafts/delightfuldot/tree/w3f-delivery/m1) <br/> - [Playground Sandbox](https://codesandbox.io/p/devbox/trydedot-th96cm?file=%2Fmain.ts%3A24%2C26) |  |
+| **0c.** | Testing and Testing Guide | [How to install & run the library](https://github.com/CoongCrafts/delightfuldot/tree/w3f-delivery/m1?tab=readme-ov-file#have-a-quick-taste)  | Run tests instructions: <br/> 1. Clone the [project](https://github.com/CoongCrafts/delightfuldot/tree/w3f-delivery/m1) <br/> 2. Run `yarn install` <br/> 3. Run `yarn test` |
+| 1. | Core functionalities | - Chain types & APIs ([codegen](https://github.com/CoongCrafts/delightfuldot/tree/w3f-delivery/m1/packages/codegen), [chaintypes](https://github.com/CoongCrafts/delightfuldot/tree/w3f-delivery/m1/packages/chaintypes), [codecs](https://github.com/CoongCrafts/delightfuldot/tree/w3f-delivery/m1/packages/codecs)) <br/> - [Metadata v14 parser](https://github.com/CoongCrafts/delightfuldot/blob/w3f-delivery/m1/packages/codecs/src/metadata/v14.ts) <br/> - [RPC APIs](https://github.com/CoongCrafts/delightfuldot/blob/w3f-delivery/m1/packages/api/src/executor/RpcExecutor.ts) <br/> - [Constant APIs](https://github.com/CoongCrafts/delightfuldot/blob/w3f-delivery/m1/packages/api/src/executor/ConstantExecutor.ts) <br/> - [Query Storage APIs](https://github.com/CoongCrafts/delightfuldot/blob/w3f-delivery/m1/packages/api/src/executor/StorageQueryExecutor.ts) <br/> - [Event APIs](https://github.com/CoongCrafts/delightfuldot/blob/w3f-delivery/m1/packages/api/src/executor/EventExecutor.ts) <br/> - [Error APIs](https://github.com/CoongCrafts/delightfuldot/blob/w3f-delivery/m1/packages/api/src/executor/ErrorExecutor.ts) |  |
+| 2. | Publish to npm |  - [delightfuldot](https://www.npmjs.com/package/delightfuldot) <br/> - [7 other packages](https://www.npmjs.com/search?q=%40delightfuldot) |  |
 
 **Additional Information**
 > Any further comments on the milestone that you would like to share with us.
