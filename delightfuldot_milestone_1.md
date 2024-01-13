@@ -15,4 +15,5 @@
 | 2. | Publish to npm |  - [delightfuldot](https://www.npmjs.com/package/delightfuldot) <br/> - [7 other packages](https://www.npmjs.com/search?q=%40delightfuldot) |  |
 
 **Additional Information**
-> Any further comments on the milestone that you would like to share with us.
+- Regarding the `ability to add custom RPC APIs` as stated in Deliverable 01
+  - We can now call arbitrary RPC methods to a blockchain node ([docs](https://github.com/CoongCrafts/delightfuldot?tab=readme-ov-file#execute-rpc-methods)), but the ability to define custom specs & generate types for those specs are not yet supported for now in M1, since this feature is tied & related to the feature to generate chain types & APIs for custom chain (codegen), so we plan to ship this feature in M2 along with custom runtime APIs.
