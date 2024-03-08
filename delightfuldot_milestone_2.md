@@ -5,6 +5,8 @@
 * **Application Document:** [DelightfulDOT](https://github.com/w3f/Grants-Program/blob/master/applications/delightfuldot.md)
 * **Milestone Number:** 2
 
+We've rebranded the project from `DelightfulDOT` to `dedot`, and the project repo is moving to [this repo](https://github.com/dedotdev/dedot). All of the [npm packages](https://www.npmjs.com/search?q=dedot) are also renamed accordingly as well with the new name.
+
 **Deliverables**
 | Number | Deliverable | Link | Notes |
 | ------------- | ------------- | ------------- |------------- |
