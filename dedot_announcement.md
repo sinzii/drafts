@@ -15,6 +15,7 @@ I believe any developers using `pjs` in build their dapps will recognize this is
 
 This is the bundle size of a really simple dapp built using pjs (no other dependencies) with 2 relatively trivial steps (1. initialize the api instance, 2. fetching account balance). As you can see the image below, the pre-compression size is close to 1MB, and even after gzip the size is still pretty big for a dead simple dapp.
 
+<img width="660" alt="Pasted image 20240628111053" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/fdf499d8-2fad-4396-98d5-48b55e937a85">
 
 ### High memory consumption
 This is the issue that wallet providers or any dapps that need to connect to a large amount of networks at the same time might get into. For example, connecting to 100 RPC endpoints at the same time can potentially consume around 800MB of memory. Through benchmarking and profiling, we've pinpointed the root cause of this issue, long story short: its type system. We have a very detailed benchmarking and analysis in the [proposal](https://grants.web3.foundation/applications/delightfuldot) to Web 3 Foundation Grants Program to build `dedot` (formerly named DelightfulDOT) almost a year ago.
@@ -32,23 +33,27 @@ Dedot was rebuilt from scratch to avoid the pitfall that pjs were into like type
 
 As a result, the same dead simple dapp that has the size of nearly ~1MB built with pjs earlier, now the size is down to 127kB (gzip: 39kB) with dedot. It's ~7-8x smaller. Don't trust my number, [verify](https://www.npmjs.com/package/dedot) it yourself!
 
+<img width="686" alt="Pasted image 20240628111029" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/6af835f4-c285-40dc-af9f-bf1906f41b35">
+
 ### Less memory consumption
 `dedot`'s type system are relying completely on native Typescript/Javascript types, and with the help of [`subshape`](https://github.com/tjjfvi/subshape) for scale-codec encoding/decoding. This makes `dedot` to use memory more efficient in parsing and handling big raw metadata blob.
 
 We're also seeing significant improvement in memory consumption when connecting `dedot` to multiple networks at the same time. Detailed benchmarking & comparison between `dedot` and `pjs` can be found [here](https://github.com/sinzii/delightfuldot-poc/tree/main?tab=readme-ov-file#memory-consumption-benchmark-result). You can also run the benchmarking script yourself to verify the result. TL.DR: ~4-5x less memory consumption compared to `pjs`.
 
 In an attempt to verify how much impact `dedot` could make in term of memory consumption in a real-world application. I was trying to integrate `dedot` into SubWallet, a leading wallet in Polkadot ecosystem. When turning on connections to all of the Substrate-based networks SubWallet supported (+100 networks), SubWallet running `dedot` was consuming less than a half the total memory consumption when it's running with `pjs`. While the result's much less compared to the raw benchmarking (since there're a lot of other things can could impact memory consumption in a real application), this shows that we can build lightweight wallets or applications that connect to hundred of network connections at the same time efficiently.
+
+<img width="1157" alt="Pasted image 20240628170009" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/8846589a-dcf7-408f-ae18-b012b8a93f23">
 	
 ### Types & APIs suggestion/auto-complete for individual Substrate-based chains.
 With the latest changes in metadata v14 and v15. We can now have access to most of the available types & APIs that's exposed by the runtime. We were able to convert/generate those Types & APIs information encoded inside the metadata into plain Typescript Types & APIs. So dapp developers can now being aware of all available Types & APIs for any particular Substrate-based blockchain that they're working on. E.g for Polkadot runtime: [types](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/types.d.ts), [tx](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/tx.d.ts), [runtime-apis](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/runtime.d.ts), [storage queries](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/query.d.ts), [constants](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/consts.d.ts), ...
 
 We're maintaining a package named [`@dedot/chaintypes`](https://github.com/dedotdev/chaintypes/tree/main/packages/chaintypes/src) with a goal to maintaining Types & APIs for all of Substrate-based blockchains in the ecosystem. So dapp developers can just install the package and pick which ever the ChainApi that they want to interact with.
 
-`TODO(gif)`: An example of interacting with different chain apis
+Below is an example of how to interacting with different chain apis with `ChainApi`:
+
+![chaintypes](https://github.com/sinzii/w3-grant-draft/assets/6867026/1237dc22-58d1-4dce-b57e-b33d167de94d)
 
 Currently, there is a scheduled job running twice everyday to check if there's any runtime upgrades in the supported networks and regenerate the Types & APIs for those networks. So developers just need to upgrade this package everytime there is a runtime upgrade to be exposed to latest runtime changes. E.g: recently there is a runtime change in Kusama to remove the `Identity` & `IdentityMigrator` pallets, [this change](https://github.com/dedotdev/chaintypes/commit/c5692e15f441962fae4558278967bed7304d2033) is then get updated for Kusana network swiftly.
-
-`TODO(gif)`: add a gif here to show case how `ChainApi` works
 
 ## Dedot also comes with more & more features
 ### Native Typescript type system for scale-codec
@@ -76,13 +81,18 @@ Another limitations of `pjs` is lack of types & apis suggestions when working wi
 
 Below is quick gif to show you how does it look when you works with a PSP22 smart contract. Or if you want to see a working example, here's the [code](https://github.com/dedotdev/dedot/blob/main/zombienet-tests/src/0001-check-contract-api.ts).
 
+![typink](https://github.com/sinzii/w3-grant-draft/assets/6867026/23f0fe2c-49be-4f38-a432-3d473181ebc6)
+
 ### Fully typed low level JSON-RPC client
 This is useful for advanced users who wants to interact with the node directly via JSON-RPC call without having to go through the whole bootstrapping of downloading metadata or following the the chain head.
+
+![typed-json-rpc-client](https://github.com/sinzii/w3-grant-draft/assets/6867026/417f5c36-790c-4cd9-9c5d-6225a04a3696)
 
 ### A builtin mechanism to cache metadata
 Downloading a big metadata blob can take a large amount of time, depending on the JSON-RPC server that dapps are connecting to. For example, downloading Polkadot metadata (~500 kB) can take up to 500ms or ~1s or even longer depends on the network conditions.
 
 This is a nice to have feature where dapp only have to download metadata on the first load, later metadata can be fetched directly from cache without having to download again.
+
 ### [Compact Metadata](https://github.com/dedotdev/dedot/issues/45) (on the road-map)
 Most of dapp does not use all of the types and api from the metadata, so why not extract only the information/types that dapps needs to function properly. So the goal is to produce a small and compact metadata that can be easily bundled inside dapps, so dapps no longer need to download metadata again from the network directly, saving a reasonable amount of loading time.
 
