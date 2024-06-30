@@ -93,8 +93,8 @@ Downloading a big metadata blob can take a large amount of time, depending on th
 
 This is a nice to have feature where dapp only have to download metadata on the first load, later metadata can be fetched directly from cache without having to download again.
 
-### [Compact Metadata](https://github.com/dedotdev/dedot/issues/45) (on the road-map)
-Most of dapp does not use all of the types and api from the metadata, so why not extract only the information/types that dapps needs to function properly. So the goal is to produce a small and compact metadata that can be easily bundled inside dapps, so dapps no longer need to download metadata again from the network directly, saving a reasonable amount of loading time.
+### Compact Metadata (on the road-map)
+Most of dapp does not use all of the types and api from the metadata, so why not extract only the information/types that dapps needs to function properly. So the goal is to produce a small and compact metadata that can be easily bundled inside dapps, so dapps no longer need to download metadata again from the network directly, saving a reasonable amount of loading time. ([ref](https://github.com/dedotdev/dedot/issues/45))
 
 ### XCM utilities (on the road-map
 Crafting an XCM are a bit complicated, due to the heavy usage of nested enums. Developers can still [making an XCM](https://gist.github.com/sinzii/078a48976827e3a85f5cebda0930d1f9) transaction with `dedot` by following along with the types suggestions. But the syntax is very cumbersome and inefficient. We plan to add some extra tool on top to help the process of crafting XCM message easier.
@@ -112,14 +112,8 @@ Having support for React Native can help broaden the types of applications that 
 Dedot is currently in alpha testing phase, so it's ready for your experiments and explorations. We're expecting some more breaking changes before stabilization. Here a few places that we want to continue to optimize and adding further improvements:
 - Optimize JSON-RPC v2 integration
 - Improve Contracts APIs
-- Improve `@dedot/chaintypes` package
-  - js docs
-  - suggestions on vs code
-  - supports more chains
-  - error handling when generating chaintypes
-- Improve `smoldot` integration
-  - Add known chain specs
-  - Add worker helper
+- Improve `@dedot/chaintypes` package (js docs, supports more chains, error handling when generating chaintypes)
+- Improve `smoldot` integration (Add known chain specs, worker helper)
 - Documentations & example dapps
 - And a lot more on the road map to help building a fully-fledge client.
 
@@ -133,9 +127,9 @@ We are small team that falls in love with Polkadot technology and believe in the
   
 ## We need your feedback and supports
 - We can't build this alone without the community feedback and supports. We are deeply appreciated if you could give `dedot` a try and let us know how you like or not like it.
-- Aside from the initial funding from W3F Grants Program, we've been self funded `dedot` to working on some of the very important integrations like the new JSON-RPC specs or Typed Contracts APIs. We're now seeking for community feedback and asking for funding from the treasury to continue the development of `dedot` to bring the dapps development DX of Polkadot ecosystem to another level. We hope to have your all supports. Thank you!
+- Aside from the initial funding from W3F Grants Program, we've been self-funded `dedot` to working on some of the very important integrations like the new JSON-RPC specs or Typed Contracts APIs. We're now seeking for community feedback and asking for funding from the treasury to continue the development of `dedot` to bring the dapps development DX of Polkadot ecosystem to another level. We hope to have your all supports. Thank you!
 - Please let us know if you have any feedback by respond to this thread or post a discussion, raise an issue in the [dedot](https://github.com/dedotdev/dedot) repository
-- Direct contact with the lead developer of `dedot`:
+- We'd love to connect everyone as well
   - Twitter / X: @realsinzii
   - Telegram: @realsinzii
   - Discord: @sinzii
