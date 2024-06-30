@@ -5,15 +5,15 @@
 
 Dapps have always been a very important part of any blockchain ecosystem, it is where users can connect and interact with blockchain nodes. Given the complex nature of interacting with Substrate-based blockchains, in order for developers to focus on the business logic, a middle layer between dapps and blockchain nodes to facilitate the connections & interactions is always an essential part of the ecosystem.
 
-`@polkadot/api` (pjs) has been around for a while and been integrated in most of the dapps in the ecosystem up until now. It has been doing a great job in helping applications connect to networks in an easy and effortless way by abstracting away all the complexities of connecting with a Substrate-based blockchain and scale-codec serialization process under the hood. 
+`@polkadot/api` (`pjs`) has been around for a while and been integrated in most of the dapps in the ecosystem up until now. It has been doing a great job in helping applications connect to networks in an easy and effortless way by abstracting away all the complexities of connecting with a Substrate-based blockchain and scale-codec serialization process under the hood. 
 
 Through our development experience, benchmarking, and profiling, we discovered that `@polkadot/api` has several limitations that may hinder developers from creating optimal dapps for the Polkadot ecosystem.
 
 ## Polkadot.js API's (`@polkadot/api` or `pjs`) limitations
 ###  Large bundle-size (`wasm` & `bn.js` & unused types def)
-I believe any developers using `pjs` in build their dapps will recognize this issue first hand. Since `pjs` has very tight dependencies on `wasm` bob (crypto utilities) and `bn.js` for handling BigInt number. It also comes by default with a large amount if [type defs](https://github.com/polkadot-js/api/tree/master/packages/types/src/interfaces) even if dapps don't use most of those APIs/information. This make the whole bundle size of dapps growing pretty large thus creating a pretty bad UX as users have to wait longer before they can start interacting with dapps.
+I believe any developers using `@polkadot/api` in build their dapps will recognize this issue first hand. Since `@polkadot/api` has very tight dependencies on `wasm` bob (crypto utilities) and `bn.js` for handling `BigInt` number. It also comes by default with a large amount if [type defs](https://github.com/polkadot-js/api/tree/master/packages/types/src/interfaces) even if dapps don't use most of those APIs/information. This make the whole bundle size of dapps growing pretty large thus creating a pretty bad UX as users have to wait longer before they can start interacting with dapps.
 
-This is the bundle size of a really simple dapp built using pjs (no other dependencies) with 2 relatively trivial steps (1. initialize the api instance, 2. fetching account balance). As you can see the image below, the pre-compression size is close to 1MB, and even after gzip the size is still pretty big for a dead simple dapp.
+This is the bundle size of a really simple dapp built using `@polkadot/api` (no other dependencies) with 2 relatively trivial steps (1. initialize the api instance, 2. fetching account balance). As you can see the image below, the pre-compression size is close to 1MB, and even after gzip the size is still pretty big for a dead simple dapp.
 
 <img width="660" alt="Pasted image 20240628111053" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/fdf499d8-2fad-4396-98d5-48b55e937a85">
 
@@ -23,24 +23,24 @@ This is the issue that wallet providers or any dapps that need to connect to a l
 As we're heading toward a multi-chain future, we believe the ability to connecting to multiple blockchain networks at the same time efficiently and effectively is very important.
 
 ### Limitations in Types & APIs suggestions for individual chains
-`pjs` only comes with a default types & api suggestions for only Polkadot & Kusama. This creates a very bad DX especially for new developers working on parachains or solochains with different business logic coming from different pallets & runtime apis.
+`@polkadot/api` only comes with a default types & api suggestions for only Polkadot & Kusama. This creates a very bad DX especially for new developers working on parachains or solochains with different business logic coming from different pallets & runtime apis.
 
-I remembered my first time working with `pjs` to interact with my custom substrate blockchain. I was having a really hard time to define custom runtime-api typedefs and figure out which api to call in order to interact with my pallet (extrinsics & storage). I was also struggled on how to construct a struct, a tuple or especially an enum to pass those as parameters into the api. Give me a thump up if you are also in my situation the first time working with pjs. :) 
+I remembered my first time working with `@polkadot/api` to interact with my custom substrate blockchain. I was having a really hard time to define custom runtime-api typedefs and figure out which api to call in order to interact with my pallet (extrinsics & storage). I was also struggled on how to construct a struct, a tuple or especially an enum to pass those as parameters into the api. Give me a thump up if you are also in my situation the first time working with `@polkadot/api`. :) 
 
 ## Dedot comes to address those issues
 ### Small bundle-size and tree-shakable
-Dedot was rebuilt from scratch to avoid the pitfall that pjs were into like type defs system (thanks god! we have metadata v14 & v15), no more dependencies with wasm bob and we're using native BigInt primitive instead of relying in `bn.js`.
+Dedot was rebuilt from scratch to avoid the pitfall that `@polkadot/api` were into like type defs system (thanks god! we have metadata v14 & v15), no more dependencies with wasm bob and we're using native BigInt primitive instead of relying in `bn.js`.
 
-As a result, the same dead simple dapp that has the size of nearly ~1MB built with pjs earlier, now the size is down to 127kB (gzip: 39kB) with dedot. It's ~7-8x smaller. Don't trust my number, [verify](https://www.npmjs.com/package/dedot) it yourself!
+As a result, the same dead simple dapp that has the size of nearly ~1MB built with `@polkadot/api` earlier, now the size is down to 127kB (gzip: 39kB) with dedot. It's ~7-8x smaller. Don't trust my number, [verify](https://github.com/dedotdev/dedot) it yourself!
 
 <img width="686" alt="Pasted image 20240628111029" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/6af835f4-c285-40dc-af9f-bf1906f41b35">
 
 ### Less memory consumption
 `dedot`'s type system are relying completely on native Typescript/Javascript types, and with the help of [`subshape`](https://github.com/tjjfvi/subshape) for scale-codec encoding/decoding. This makes `dedot` to use memory more efficient in parsing and handling big raw metadata blob.
 
-We're also seeing significant improvement in memory consumption when connecting `dedot` to multiple networks at the same time. Detailed benchmarking & comparison between `dedot` and `pjs` can be found [here](https://github.com/sinzii/delightfuldot-poc/tree/main?tab=readme-ov-file#memory-consumption-benchmark-result). You can also run the benchmarking script yourself to verify the result. TL.DR: ~4-5x less memory consumption compared to `pjs`.
+We're also seeing significant improvement in memory consumption when connecting `dedot` to multiple networks at the same time. Detailed benchmarking & comparison between `dedot` and `@polkadot/api` can be found [here](https://github.com/sinzii/delightfuldot-poc/tree/main?tab=readme-ov-file#memory-consumption-benchmark-result). You can also run the benchmarking script yourself to verify the result. TL.DR: ~4-5x less memory consumption compared to `@polkadot/api`.
 
-In an attempt to verify how much impact `dedot` could make in term of memory consumption in a real-world application. I was trying to integrate `dedot` into SubWallet, a leading wallet in Polkadot ecosystem. When turning on connections to all of the Substrate-based networks SubWallet supported (+100 networks), SubWallet running `dedot` was consuming less than a half the total memory consumption when it's running with `pjs`. While the result's much less compared to the raw benchmarking (since there're a lot of other things can could impact memory consumption in a real application), this shows that we can build lightweight wallets or applications that connect to hundred of network connections at the same time efficiently.
+In an attempt to verify how much impact `dedot` could make in term of memory consumption in a real-world application. I was trying to integrate `dedot` into SubWallet, a leading wallet in Polkadot ecosystem. When turning on connections to all of the Substrate-based networks SubWallet supported (+100 networks), SubWallet running `dedot` was consuming less than a half the total memory consumption when it's running with `@polkadot/api`. While the result's much less compared to the raw benchmarking (since there're a lot of other things can could impact memory consumption in a real application), this shows that we can build lightweight wallets or applications that connect to hundred of network connections at the same time efficiently.
 
 <img width="1157" alt="Pasted image 20240628170009" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/8846589a-dcf7-408f-ae18-b012b8a93f23">
 	
@@ -57,7 +57,7 @@ Currently, there is a scheduled job running twice everyday to check if there's a
 
 ## Dedot also comes with more & more features
 ### Native Typescript type system for scale-codec
-Instead of using a wrapped codec for `u16`, `u64` in pjs, dedot directly use Typescript type system to represent these type as `number` or `bigint`.
+Instead of using a wrapped codec for `u16`, `u64` in `@polkadot/api`, dedot directly use Typescript type system to represent these type as `number` or `bigint`.
 
 This make it easier for new dapp developers get started, and downstream libraries can easily inspect and utilize the types defined.
 
@@ -77,7 +77,7 @@ For the chain that haven't upgraded the the new specs yet, dapps could still be 
 Since `smoldot` has a very good supports for new JSON-RPC specs for better performance. Developers can connect to the network via `smoldot` light client using the [`SmoldotProvider`](https://github.com/dedotdev/dedot/blob/main/packages/providers/src/smoldot/SmoldotProvider.ts). 
 
 ### Typed Contract APIs
-Another limitations of `pjs` is lack of types & apis suggestions when working with ink!  Smart Contracts. With `dedot`, we're going to change this forever. Similar to how we expose Types & APIs from the runtime metadata, we're using the same trick for ink! smart contracts as well to enable Types & APIs suggestions for any ink! contracts that you're working on.
+Another limitations of `@polkadot/api` is lack of types & apis suggestions when working with ink!  Smart Contracts. With `dedot`, we're going to change this forever. Similar to how we expose Types & APIs from the runtime metadata, we're using the same trick for ink! smart contracts as well to enable Types & APIs suggestions for any ink! contracts that you're working on.
 
 Below is quick gif to show you how does it look when you works with a PSP22 smart contract. Or if you want to see a working example, here's the [code](https://github.com/dedotdev/dedot/blob/main/zombienet-tests/src/0001-check-contract-api.ts).
 
@@ -113,33 +113,32 @@ Dedot is currently in alpha testing phase, so it's ready for your experiments an
 - Optimize JSON-RPC v2 integration
 - Improve Contracts APIs
 - Improve `@dedot/chaintypes` package
-	- js docs
-	- suggestions on vs code
-	- supports more chains
-	- error handling when generating chaintypes
+  - js docs
+  - suggestions on vs code
+  - supports more chains
+  - error handling when generating chaintypes
 - Improve `smoldot` integration
-	- Add known chain specs
-	- Add worker helper
+  - Add known chain specs
+  - Add worker helper
 - Documentations & example dapps
 - And a lot more on the road map to help building a fully-fledge client.
 
 ## Who we are?
 We are small team that falls in love with Polkadot technology and believe in the vision of a decentralization future. 
 - We've started contributing from 2022 and since then we have secured 2 W3F Grants to building open source for Polkadot:
-	- The [1st grant](https://grants.web3.foundation/applications/coong_wallet) is to build [`Coong Wallet`](https://github.com/CoongCrafts/coong-wallet), a website-based wallet that's compatible with `@polkadot/extension` APIs and works seamlessly on both desktop and mobile. (Demo 1, Demo 2)
-	- The [2nd grant](https://grants.web3.foundation/applications/delightfuldot) is to fund the initial phase of `dedot` (formerly named DelightfulDOT)
+  - The [1st grant](https://grants.web3.foundation/applications/coong_wallet) is to build [`Coong Wallet`](https://github.com/CoongCrafts/coong-wallet), a website-based wallet that's compatible with `@polkadot/extension` APIs and works seamlessly on both desktop and mobile. (Demo 1, Demo 2)
+  - The [2nd grant](https://grants.web3.foundation/applications/delightfuldot) is to fund the initial phase of `dedot` (formerly named DelightfulDOT)
 - We're also the first prize winner of Polkadot Hackathon Vietnam 2023 with [`InSpace`](https://inspace.ink), an on-chain community launcher via ink! smart contracts.
-- Thang is PBA 5 Graduate in Singapore.
+- Thang (@sinzii), our lead developer, is PBA 5 graduate in Singapore.
+  
 ## We need your feedback and supports
 - We can't build this alone without the community feedback and supports. We are deeply appreciated if you could give `dedot` a try and let us know how you like or not like it.
 - Aside from the initial funding from W3F Grants Program, we've been self funded `dedot` to working on some of the very important integrations like the new JSON-RPC specs or Typed Contracts APIs. We're now seeking for community feedback and asking for funding from the treasury to continue the development of `dedot` to bring the dapps development DX of Polkadot ecosystem to another level. We hope to have your all supports. Thank you!
-
-## Contract info
-- Post a discussions or raise an issue
-- Direct contact with the lead developer of `dedot`
-	- Twitter / X: @realsinzii
-	- Telegram: @realsinzii
-	- Discord: @sinzii
+- Please let us know if you have any feedback by respond to this thread or post a discussion, raise an issue in the [dedot](https://github.com/dedotdev/dedot) repository
+- Direct contact with the lead developer of `dedot`:
+  - Twitter / X: @realsinzii
+  - Telegram: @realsinzii
+  - Discord: @sinzii
 
 
 
