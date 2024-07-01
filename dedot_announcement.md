@@ -109,7 +109,7 @@ Supporting React Native can encourage developers to build mobile applications on
 
 ## Migration from `@polkadot/api` to `dedot`
 
-`dedot` is not designed to be drop-in replacement for `@polkadot/api`, but we make some intentional decisions to help migration process from `@polkadot/api` to `dedot` a lot easier and faster. You should already see some familiarities in api styling between `dedot` & `@polkadot/api`. More information about migration can be found [here](https://github.com/dedotdev/dedot?tab=readme-ov-file#migration-from-polkadotapi-to-dedot).
+`dedot` is not designed to be drop-in replacement for `@polkadot/api`, but we make some intentional decisions to help the migration process from `@polkadot/api` to `dedot` a lot easier and faster. You should already see some familiarities in api styling between `dedot` & `@polkadot/api`. More information about migration can be found [here](https://github.com/dedotdev/dedot?tab=readme-ov-file#migration-from-polkadotapi-to-dedot).
 
 ## What's next
 Dedot is currently in alpha testing phase, so it's ready for your experiments and explorations. We're expecting some more breaking changes before stabilization. Here a few places that we want to continue to optimize and adding further improvements:
