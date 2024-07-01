@@ -129,7 +129,7 @@ We are small team that falls in love with Polkadot technology and believe in the
 - Thang (@sinzii), our lead developer, is PBA 5 graduate in Singapore.
   
 ## We need your feedback and supports
-We can't build this alone without the community feedback and supports. We are deeply appreciated if you could give `dedot` a try and let us know how you like or not like it.
+We can't build this alone without community feedback and support. We would greatly appreciate it if you could give [`dedot`](https://github.com/dedotdev/dedot) a try and let us know what you like or dislike about it.
 
 Aside from the initial funding from the W3F Grants Program, we've been self-funding `dedot` to work on some crucial integrations, such as the new JSON-RPC specs or Typed Contracts APIs, ... We're now seeking for community feedback and asking for funding from the treasury to continue the development of `dedot` to bring the dapps development DX of Polkadot ecosystem to the next level. We hope to have your all supports. Thank you very much!
 
