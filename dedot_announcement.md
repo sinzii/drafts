@@ -126,7 +126,7 @@ We are small team that falls in love with Polkadot technology and believe in the
   - The [1st grant](https://grants.web3.foundation/applications/coong_wallet) is to build [`Coong Wallet`](https://github.com/CoongCrafts/coong-wallet), a website-based wallet that's compatible with `@polkadot/extension` APIs and works seamlessly on both desktop and mobile.
   - The [2nd grant](https://grants.web3.foundation/applications/delightfuldot) is to fund the initial phase of `dedot` (formerly named DelightfulDOT)
 - We're also the [1st prize winner](https://x.com/dotinvietnam/status/1740678795286495512) of Polkadot Hackathon Vietnam 2023 with [`InSpace`](https://inspace.ink), an on-chain community launcher via ink! smart contracts.
-- Thang (@sinzii), our lead developer, is PBA 5 graduate in Singapore.
+- Thang (@sinzii), our lead developer, is a PBA 5 graduate in Singapore.
   
 ## We need your feedback and supports
 We can't build this alone without community feedback and support. We would greatly appreciate it if you could give [`dedot`](https://github.com/dedotdev/dedot) a try and let us know what you like or dislike about it.
