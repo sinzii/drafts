@@ -5,11 +5,11 @@ Introducing Dedot, the next-generation JavaScript client for Polkadot and Substr
 
 ## Overview
 
-Dapps have always been a very important part of any blockchain ecosystem, it is where users can connect and interact with blockchain nodes. Given the complex nature of interacting with Substrate-based blockchains, in order for developers to focus on the business logic, a middle layer between dapps and blockchain nodes to facilitate the connections & interactions is always an essential part of the ecosystem.
+Dapps have always been a crucial part of any blockchain ecosystem, providing users with a means to connect and interact with blockchain networks. Given the complex nature of interacting with Substrate-based blockchains, developers need to focus on business logic rather than connection intricacies. Thus, a middle layer between dapps and blockchain nodes to facilitate these connections and interactions is essential.
 
-`@polkadot/api` (`pjs`) has been around for a while and been integrated in most of the dapps in the ecosystem up until now. It has been doing a great job in helping applications connect to networks in an easy and effortless way by abstracting away all the complexities of connecting with a Substrate-based blockchain and scale-codec serialization process under the hood. 
+`@polkadot/api` (`pjs`) has been widely adopted and integrated into most dapps within the ecosystem. It has effectively simplified the process of connecting applications to networks by abstracting the complexities of interacting with Substrate-based blockchains and handling the scale-codec serialization process.
 
-Through our development experience, benchmarking, and profiling, we discovered that `@polkadot/api` has several limitations that may hinder developers from creating optimal dapps for the Polkadot ecosystem.
+However, through our development experience, benchmarking, and profiling, we discovered that `@polkadot/api` has several limitations that may hinder developers from creating optimal dapps for the Polkadot ecosystem.
 
 ## Polkadot.js API's (`@polkadot/api` or `pjs`) limitations
 ###  Large bundle-size (`wasm` & `bn.js` & unused type defs)
