@@ -103,7 +103,7 @@ Most of dapp does not use all of the types and api from the metadata, so why not
 Crafting an XCM are a bit complicated, due to the heavy usage of nested enums. Developers can still [making an XCM](https://gist.github.com/sinzii/078a48976827e3a85f5cebda0930d1f9) transaction with `dedot` by following along with the types suggestions. But the syntax is very cumbersome and inefficient. We plan to add some extra tool on top to help the process of crafting XCM message easier.
 
 ### React Native supports (on the road-map)
-Having support for React Native can help broaden the types of applications that can build on Polkadot ecosystem.
+Supporting React Native can encourage developers to build mobile applications on Polkadot, broadening the range of applications within the ecosystem.
 
 ### And a lot more toolings around dedot to come
 
