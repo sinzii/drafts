@@ -122,7 +122,7 @@ Dedot is currently in alpha testing phase, so it's ready for your experiments an
 ## Who we are?
 We are small team that falls in love with Polkadot technology and believe in the vision of a decentralization future. 
 - We've started contributing from 2022 and since then we have secured 2 W3F Grants to building open source for Polkadot:
-  - The [1st grant](https://grants.web3.foundation/applications/coong_wallet) is to build [`Coong Wallet`](https://github.com/CoongCrafts/coong-wallet), a website-based wallet that's compatible with `@polkadot/extension` APIs and works seamlessly on both desktop and mobile. (Demo 1, Demo 2)
+  - The [1st grant](https://grants.web3.foundation/applications/coong_wallet) is to build [`Coong Wallet`](https://github.com/CoongCrafts/coong-wallet), a website-based wallet that's compatible with `@polkadot/extension` APIs and works seamlessly on both desktop and mobile.
   - The [2nd grant](https://grants.web3.foundation/applications/delightfuldot) is to fund the initial phase of `dedot` (formerly named DelightfulDOT)
 - We're also the first prize winner of Polkadot Hackathon Vietnam 2023 with [`InSpace`](https://inspace.ink), an on-chain community launcher via ink! smart contracts.
 - Thang (@sinzii), our lead developer, is PBA 5 graduate in Singapore.
