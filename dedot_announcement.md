@@ -128,10 +128,14 @@ We are small team that falls in love with Polkadot technology and believe in the
 - Thang (@sinzii), our lead developer, is PBA 5 graduate in Singapore.
   
 ## We need your feedback and supports
-- We can't build this alone without the community feedback and supports. We are deeply appreciated if you could give `dedot` a try and let us know how you like or not like it.
-- Aside from the initial funding from W3F Grants Program, we've been self-funded `dedot` to working on some of the very important integrations like the new JSON-RPC specs or Typed Contracts APIs. We're now seeking for community feedback and asking for funding from the treasury to continue the development of `dedot` to bring the dapps development DX of Polkadot ecosystem to another level. We hope to have your all supports. Thank you!
-- Please let us know if you have any feedback by respond to this thread or post a discussion, raise an issue in the [dedot](https://github.com/dedotdev/dedot) repository
-- We'd love to connect everyone as well
+We can't build this alone without the community feedback and supports. We are deeply appreciated if you could give `dedot` a try and let us know how you like or not like it.
+
+Aside from the initial funding from W3F Grants Program, we've been self-funded `dedot` to working on some of the very important integrations like the new JSON-RPC specs or Typed Contracts APIs. We're now seeking for community feedback and asking for funding from the treasury to continue the development of `dedot` to bring the dapps development DX of Polkadot ecosystem to the next level. We hope to have your all supports. Thank you!
+
+Please let us know if you have any feedback by respond to this thread or post a discussion, raise an issue in the [dedot](https://github.com/dedotdev/dedot) repository
+
+We'd love to connect everyone as well
+  - Repository: [dedot](https://github.com/dedotdev/dedot)
   - Twitter / X: @realsinzii
   - Telegram: @realsinzii
   - Discord: @sinzii
