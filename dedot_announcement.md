@@ -12,10 +12,10 @@ Dapps have always been a very important part of any blockchain ecosystem, it is 
 Through our development experience, benchmarking, and profiling, we discovered that `@polkadot/api` has several limitations that may hinder developers from creating optimal dapps for the Polkadot ecosystem.
 
 ## Polkadot.js API's (`@polkadot/api` or `pjs`) limitations
-###  Large bundle-size (`wasm` & `bn.js` & unused types def)
+###  Large bundle-size (`wasm` & `bn.js` & unused type defs)
 I believe any developers using `@polkadot/api` in build their dapps will recognize this issue first hand. Since `@polkadot/api` has very tight dependencies on `wasm` bob (crypto utilities) and `bn.js` for handling `BigInt` number. It also comes by default with a large amount if [type defs](https://github.com/polkadot-js/api/tree/master/packages/types/src/interfaces) even if dapps don't use most of those APIs/information. This make the whole bundle size of dapps growing pretty large thus creating a pretty bad UX as users have to wait longer before they can start interacting with dapps.
 
-This is the bundle size of a really simple dapp built using `@polkadot/api` (no other dependencies) with 2 relatively trivial steps (1. initialize the api instance, 2. fetching account balance). As you can see the image below, the pre-compression size is close to 1MB, and even after gzip the size is still pretty big for a dead simple dapp.
+This is the bundle size of a really simple dapp built using `@polkadot/api` (no other dependencies) with 2 relatively trivial steps (1. initialize the api instance, 2. fetching account balance). As you can see in the image below, the pre-compression size is close to 1MB, and even after gzip the size is still pretty big for a dead simple dapp.
 
 <img width="660" alt="Pasted image 20240628111053" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/fdf499d8-2fad-4396-98d5-48b55e937a85">
 
@@ -42,16 +42,16 @@ As a result, the same dead simple dapp that has the size of nearly ~1MB built wi
 
 We're also seeing significant improvement in memory consumption when connecting `dedot` to multiple networks at the same time. Detailed benchmarking & comparison between `dedot` and `@polkadot/api` can be found [here](https://github.com/sinzii/delightfuldot-poc/tree/main?tab=readme-ov-file#memory-consumption-benchmark-result). You can also run the benchmarking script yourself to verify the result. TL.DR: ~4-5x less memory consumption compared to `@polkadot/api`.
 
-In an attempt to verify how much impact `dedot` could make in term of memory consumption in a real-world application. I was trying to integrate `dedot` into SubWallet, a leading wallet in Polkadot ecosystem. When turning on connections to all of the Substrate-based networks SubWallet supported (+100 networks), SubWallet running `dedot` was consuming less than a half the total memory consumption when it's running with `@polkadot/api`. While the result's much less compared to the raw benchmarking (since there're a lot of other things can could impact memory consumption in a real application), this shows that we can build lightweight wallets or applications that connect to hundred of network connections at the same time efficiently.
+In an attempt to verify how much impact `dedot` could make in term of memory consumption in a real-world application. I was trying to integrate `dedot` into SubWallet, a leading wallet in Polkadot ecosystem. When turning on connections to all of the Substrate-based networks SubWallet supported (+100 networks), SubWallet running `dedot` was consuming less than a half the total memory consumption when it's running with `@polkadot/api`. While the result's much less compared to the raw benchmarking (since there're a lot of other things can could impact memory consumption in a real application), this shows that we can build lightweight wallets or applications that connect to hundred of network connections at the same time efficiently with further optimizations.
 
 <img width="1157" alt="Pasted image 20240628170009" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/8846589a-dcf7-408f-ae18-b012b8a93f23">
 	
 ### Types & APIs suggestion/auto-complete for individual Substrate-based chains.
 With the latest changes in metadata v14 and v15. We can now have access to most of the available types & APIs that's exposed by the runtime. We were able to convert/generate those Types & APIs information encoded inside the metadata into plain TypeScript Types & APIs. So dapp developers can now being aware of all available Types & APIs for any particular Substrate-based blockchain that they're working on. E.g for Polkadot runtime: [types](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/types.d.ts), [tx](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/tx.d.ts), [runtime-apis](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/runtime.d.ts), [storage queries](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/query.d.ts), [constants](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/consts.d.ts), ...
 
-We're maintaining a package named [`@dedot/chaintypes`](https://github.com/dedotdev/chaintypes/tree/main/packages/chaintypes/src) with a goal to maintaining Types & APIs for all of Substrate-based blockchains in the ecosystem. So dapp developers can just install the package and pick which ever the ChainApi that they want to interact with.
+We're maintaining a package named [`@dedot/chaintypes`](https://github.com/dedotdev/chaintypes/tree/main/packages/chaintypes/src) with a goal to maintaining Types & APIs for all of Substrate-based blockchains in the ecosystem. So dapp developers can just install the package and pick which ever the `ChainApi` that they want to interact with.
 
-Below is an example of how to interacting with different chain apis with `ChainApi`:
+Below is an example of how to interacting with different chain apis with `ChainApi` with `dedot`:
 
 ![chaintypes](https://github.com/sinzii/w3-grant-draft/assets/6867026/1237dc22-58d1-4dce-b57e-b33d167de94d)
 
@@ -136,7 +136,7 @@ Please let us know if you have any feedback by respond to this thread or post a 
 
 We'd love to connect everyone as well
   - Repository: [dedotdev/dedot](https://github.com/dedotdev/dedot)
-  - Twitter / X: @realsinzii
+  - Twitter / X: [@realsinzii](https://x.com/realsinzii)
   - Telegram: @realsinzii
   - Discord: @sinzii
 
