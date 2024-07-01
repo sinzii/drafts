@@ -13,9 +13,10 @@ However, through our development experience, benchmarking, and profiling, we dis
 
 ## Polkadot.js API's (`@polkadot/api` or `pjs`) limitations
 ###  Large bundle-size (`wasm` & `bn.js` & unused type defs)
-I believe any developers using `@polkadot/api` in build their dapps will recognize this issue first hand. Since `@polkadot/api` has very tight dependencies on `wasm` bob (crypto utilities) and `bn.js` for handling `BigInt` number. It also comes by default with a large amount if [type defs](https://github.com/polkadot-js/api/tree/master/packages/types/src/interfaces) even if dapps don't use most of those APIs/information. This make the whole bundle size of dapps growing pretty large thus creating a pretty bad UX as users have to wait longer before they can start interacting with dapps.
 
-This is the bundle size of a really simple dapp built using `@polkadot/api` (no other dependencies) with 2 relatively trivial steps (1. initialize the api instance, 2. fetching account balance). As you can see in the image below, the pre-compression size is close to 1MB, and even after gzip the size is still pretty big for a dead simple dapp.
+I believe any developer using `@polkadot/api` to build their dapps will recognize this issue firsthand. `@polkadot/api` has tight dependencies on wasm-blob (crypto utilities) and `bn.js` for handling BigInt numbers. Additionally, it comes with a large number of [type defs](https://github.com/polkadot-js/api/tree/master/packages/types/src/interfaces) by default, even if the dapp doesn't use most of those APIs or information. This makes the entire bundle size of dapps quite large, resulting in a poor user experience as users have to wait longer before they can start interacting with the dapp.
+
+Here is the bundle size of a very simple dapp built using @polkadot/api (with no other dependencies) that performs two relatively trivial steps: 1) initializing the API instance, and 2) fetching the account balance. As shown in the image below, the pre-compression size is close to 1MB, and even after gzip compression, the size remains quite large for such a simple dapp.
 
 <img width="660" alt="Pasted image 20240628111053" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/fdf499d8-2fad-4396-98d5-48b55e937a85">
 
