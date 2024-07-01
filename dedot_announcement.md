@@ -26,7 +26,7 @@ This is the issue that wallet providers or any dapps that need to connect to a l
 As we're heading toward a multi-chain future, we believe the ability to connecting to multiple blockchain networks at the same time efficiently and effectively is very important.
 
 ### Limitations in Types & APIs suggestions for individual chains
-`@polkadot/api` only comes with a default types & api suggestions for only Polkadot & Kusama. This creates a very bad DX especially for new developers working on parachains or solochains with different business logic coming from different pallets & runtime apis.
+`@polkadot/api` only comes with a [default types & apis suggestions](https://github.com/polkadot-js/api/tree/master/packages/api-augment) for only Polkadot & Kusama. This creates a very bad DX especially for new developers working on parachains or solochains with different business logic coming from different pallets & runtime apis.
 
 I remembered my first time working with `@polkadot/api` to interact with my custom substrate blockchain. I was having a really hard time to define custom runtime-api typedefs and figure out which api to call in order to interact with my pallet (extrinsics & storage). I was also struggled on how to construct a struct, a tuple or especially an enum to pass those as parameters into the api. Give me a thump up if you are also in my situation the first time working with `@polkadot/api`. :) 
 
