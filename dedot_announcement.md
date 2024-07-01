@@ -1,5 +1,7 @@
 
-# Introducing dedot: A delightful Typescript/Javascript client for Polkadot & Substrate-based blockchains
+# Introducing dedot: A delightful JavaScript client for Polkadot & Substrate-based blockchains
+
+Introducing `Dedot`, the next generation of JavaScript client for Polkadot and Substrate blockchains. Designed to enhance dapps development experience to the next level, Dedot is rebuilt from the ground up to be lightweight and tree-shakable. Benefit from precise type and API suggestions for individual Substrate blockchains and ink! contracts, all while efficiently connecting to multiple chains to support a seamless multi-chain future.
 
 ## Overview
 
@@ -36,7 +38,7 @@ As a result, the same dead simple dapp that has the size of nearly ~1MB built wi
 <img width="686" alt="Pasted image 20240628111029" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/6af835f4-c285-40dc-af9f-bf1906f41b35">
 
 ### Less memory consumption
-`dedot`'s type system are relying completely on native Typescript/Javascript types, and with the help of [`subshape`](https://github.com/tjjfvi/subshape) for scale-codec encoding/decoding. This makes `dedot` to use memory more efficient in parsing and handling big raw metadata blob.
+`dedot`'s type system are relying completely on native TypeScript/JavaScript types, and with the help of [`subshape`](https://github.com/tjjfvi/subshape) for scale-codec encoding/decoding. This makes `dedot` to use memory more efficient in parsing and handling big raw metadata blob.
 
 We're also seeing significant improvement in memory consumption when connecting `dedot` to multiple networks at the same time. Detailed benchmarking & comparison between `dedot` and `@polkadot/api` can be found [here](https://github.com/sinzii/delightfuldot-poc/tree/main?tab=readme-ov-file#memory-consumption-benchmark-result). You can also run the benchmarking script yourself to verify the result. TL.DR: ~4-5x less memory consumption compared to `@polkadot/api`.
 
@@ -45,7 +47,7 @@ In an attempt to verify how much impact `dedot` could make in term of memory con
 <img width="1157" alt="Pasted image 20240628170009" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/8846589a-dcf7-408f-ae18-b012b8a93f23">
 	
 ### Types & APIs suggestion/auto-complete for individual Substrate-based chains.
-With the latest changes in metadata v14 and v15. We can now have access to most of the available types & APIs that's exposed by the runtime. We were able to convert/generate those Types & APIs information encoded inside the metadata into plain Typescript Types & APIs. So dapp developers can now being aware of all available Types & APIs for any particular Substrate-based blockchain that they're working on. E.g for Polkadot runtime: [types](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/types.d.ts), [tx](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/tx.d.ts), [runtime-apis](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/runtime.d.ts), [storage queries](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/query.d.ts), [constants](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/consts.d.ts), ...
+With the latest changes in metadata v14 and v15. We can now have access to most of the available types & APIs that's exposed by the runtime. We were able to convert/generate those Types & APIs information encoded inside the metadata into plain TypeScript Types & APIs. So dapp developers can now being aware of all available Types & APIs for any particular Substrate-based blockchain that they're working on. E.g for Polkadot runtime: [types](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/types.d.ts), [tx](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/tx.d.ts), [runtime-apis](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/runtime.d.ts), [storage queries](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/query.d.ts), [constants](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/consts.d.ts), ...
 
 We're maintaining a package named [`@dedot/chaintypes`](https://github.com/dedotdev/chaintypes/tree/main/packages/chaintypes/src) with a goal to maintaining Types & APIs for all of Substrate-based blockchains in the ecosystem. So dapp developers can just install the package and pick which ever the ChainApi that they want to interact with.
 
@@ -56,8 +58,8 @@ Below is an example of how to interacting with different chain apis with `ChainA
 Currently, there is a scheduled job running twice everyday to check if there's any runtime upgrades in the supported networks and regenerate the Types & APIs for those networks. So developers just need to upgrade this package everytime there is a runtime upgrade to be exposed to latest runtime changes. E.g: recently there is a runtime change in Kusama to remove the `Identity` & `IdentityMigrator` pallets, [this change](https://github.com/dedotdev/chaintypes/commit/c5692e15f441962fae4558278967bed7304d2033) is then get updated for Kusana network swiftly.
 
 ## Dedot also comes with more & more features
-### Native Typescript type system for scale-codec
-Instead of using a wrapped codec for `u16`, `u64` in `@polkadot/api`, dedot directly use Typescript type system to represent these type as `number` or `bigint`.
+### Native TypeScript type system for scale-codec
+Instead of using a wrapped codec for `u16`, `u64` in `@polkadot/api`, dedot directly use TypeScript type system to represent these type as `number` or `bigint`.
 
 This make it easier for new dapp developers get started, and downstream libraries can easily inspect and utilize the types defined.
 
