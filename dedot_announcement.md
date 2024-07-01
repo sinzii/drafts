@@ -86,7 +86,7 @@ Below is quick gif to show you how does it look when you works with a PSP22 smar
 ![typink](https://github.com/sinzii/w3-grant-draft/assets/6867026/23f0fe2c-49be-4f38-a432-3d473181ebc6)
 
 ### Fully typed low level JSON-RPC client
-This is useful for advanced users who wants to interact with the node directly via JSON-RPC call without having to go through the whole bootstrapping of downloading metadata or following the the chain head.
+This is useful for advanced users who wants to interact with the node directly via JSON-RPC call without having to go through the whole bootstrapping of downloading metadata or following the chain head.
 
 ![typed-json-rpc-client](https://github.com/sinzii/w3-grant-draft/assets/6867026/417f5c36-790c-4cd9-9c5d-6225a04a3696)
 
