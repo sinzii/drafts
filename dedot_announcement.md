@@ -55,7 +55,7 @@ Below is an example of how to interacting with different chain apis with `ChainA
 
 ![chaintypes](https://github.com/sinzii/w3-grant-draft/assets/6867026/1237dc22-58d1-4dce-b57e-b33d167de94d)
 
-Currently, there is a scheduled job running twice everyday to check if there's any runtime upgrades in the supported networks and regenerate the Types & APIs for those networks. So developers just need to upgrade this package everytime there is a runtime upgrade to be exposed to latest runtime changes. E.g: recently there is a runtime change in Kusama to remove the `Identity` & `IdentityMigrator` pallets, [this change](https://github.com/dedotdev/chaintypes/commit/c5692e15f441962fae4558278967bed7304d2033) is then get updated for Kusana network swiftly.
+Currently, there is a scheduled job running twice everyday to check if there's any runtime upgrades in the supported networks and regenerate the Types & APIs for those networks. So developers just need to upgrade this package everytime there is a runtime upgrade to be exposed to latest runtime changes. E.g: recently there is a runtime change in Kusama to remove the `Identity` & `IdentityMigrator` pallets, [this change](https://github.com/dedotdev/chaintypes/commit/c5692e15f441962fae4558278967bed7304d2033) is then get updated for Kusana chaintypes swiftly.
 
 ## Dedot also comes with more & more features
 ### Native TypeScript type system for scale-codec
@@ -135,7 +135,7 @@ Aside from the initial funding from W3F Grants Program, we've been self-funded `
 Please let us know if you have any feedback by respond to this thread or post a discussion, raise an issue in the [dedot](https://github.com/dedotdev/dedot) repository
 
 We'd love to connect everyone as well
-  - Repository: [dedot](https://github.com/dedotdev/dedot)
+  - Repository: [dedotdev/dedot](https://github.com/dedotdev/dedot)
   - Twitter / X: @realsinzii
   - Telegram: @realsinzii
   - Discord: @sinzii
