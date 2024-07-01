@@ -130,7 +130,7 @@ We are small team that falls in love with Polkadot technology and believe in the
 ## We need your feedback and supports
 We can't build this alone without the community feedback and supports. We are deeply appreciated if you could give `dedot` a try and let us know how you like or not like it.
 
-Aside from the initial funding from W3F Grants Program, we've been self-funded `dedot` to working on some of the very important integrations like the new JSON-RPC specs or Typed Contracts APIs. We're now seeking for community feedback and asking for funding from the treasury to continue the development of `dedot` to bring the dapps development DX of Polkadot ecosystem to the next level. We hope to have your all supports. Thank you!
+Aside from the initial funding from the W3F Grants Program, we've been self-funding `dedot` to work on some crucial integrations, such as the new JSON-RPC specs or Typed Contracts APIs, ... We're now seeking for community feedback and asking for funding from the treasury to continue the development of `dedot` to bring the dapps development DX of Polkadot ecosystem to the next level. We hope to have your all supports. Thank you very much!
 
 Please let us know if you have any feedback by respond to this thread or post a discussion, raise an issue in the [dedot](https://github.com/dedotdev/dedot) repository
 
