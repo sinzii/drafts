@@ -92,7 +92,7 @@ This is useful for advanced users who wants to interact with the node directly v
 ![typed-json-rpc-client](https://github.com/sinzii/w3-grant-draft/assets/6867026/417f5c36-790c-4cd9-9c5d-6225a04a3696)
 
 ### A builtin mechanism to cache metadata
-Downloading a big metadata blob can take a large amount of time, depending on the JSON-RPC server that dapps are connecting to. For example, downloading Polkadot metadata (~500 kB) can take up to 500ms or ~1s or even longer depends on the network conditions.
+Downloading a big metadata blob can take a large amount of time, depending on the JSON-RPC server that dapps are connecting to, it might potentially take longer if the connection is via a light client. For example, downloading Polkadot metadata (~500 kB) can take up to 500ms or ~1s or even longer depends on the network conditions.
 
 This is a nice to have feature where dapp only have to download metadata on the first load, later metadata can be fetched directly from cache without having to download again.
 
