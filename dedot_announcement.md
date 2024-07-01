@@ -1,7 +1,7 @@
 
 # Introducing dedot: A delightful JavaScript client for Polkadot & Substrate-based blockchains
 
-Introducing `Dedot`, the next generation of JavaScript client for Polkadot and Substrate blockchains. Designed to enhance dapps development experience to the next level, Dedot is rebuilt from the ground up to be lightweight and tree-shakable. Benefit from precise type and API suggestions for individual Substrate blockchains and ink! smart contracts, all while efficiently connecting to multiple chains to support a seamless multi-chain future.
+Introducing Dedot, the next-generation JavaScript client for Polkadot and Substrate-based blockchains. Designed to elevate the dapp development experience, Dedot is rebuilt from the ground up to be lightweight and tree-shakable, offering precise Types and APIs suggestions for individual Substrate-based blockchains and ink! Smart Contracts. Dedot helps dapps efficiently connect to multiple chains simultaneously as we head toward a seamless multi-chain future.
 
 ## Overview
 
