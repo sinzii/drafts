@@ -98,7 +98,7 @@ This is a nice to have feature where dapp only have to download metadata on the 
 ### Compact Metadata (on the road-map)
 Most of dapp does not use all of the types and api from the metadata, so why not extract only the information/types that dapps needs to function properly. So the goal is to produce a small and compact metadata that can be easily bundled inside dapps, so dapps no longer need to download metadata again from the network directly, saving a reasonable amount of loading time. ([ref](https://github.com/dedotdev/dedot/issues/45))
 
-### XCM utilities (on the road-map
+### XCM utilities (on the road-map)
 Crafting an XCM are a bit complicated, due to the heavy usage of nested enums. Developers can still [making an XCM](https://gist.github.com/sinzii/078a48976827e3a85f5cebda0930d1f9) transaction with `dedot` by following along with the types suggestions. But the syntax is very cumbersome and inefficient. We plan to add some extra tool on top to help the process of crafting XCM message easier.
 
 ### React Native supports (on the road-map)
@@ -112,10 +112,10 @@ Having support for React Native can help broaden the types of applications that 
 
 ## What's next
 Dedot is currently in alpha testing phase, so it's ready for your experiments and explorations. We're expecting some more breaking changes before stabilization. Here a few places that we want to continue to optimize and adding further improvements:
-- Optimize JSON-RPC v2 integration
-- Improve Contracts APIs
-- Improve `@dedot/chaintypes` package (js docs, supports more chains, error handling when generating chaintypes)
-- Improve `smoldot` integration (Add known chain specs, worker helper)
+- Futher optimize JSON-RPC v2 integration
+- Continue Contracts APIs
+- Improve `@dedot/chaintypes` package and supports more networks
+- Improve `smoldot` integration (add known chain specs, worker helper)
 - Documentations & example dapps
 - And a lot more on the road map to help building a fully-fledge client.
 
