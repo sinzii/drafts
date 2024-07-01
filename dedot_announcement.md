@@ -31,7 +31,7 @@ I remembered my first time working with `@polkadot/api` to interact with my cust
 
 ## Dedot comes to address those issues
 ### Small bundle-size and tree-shakable
-Dedot was rebuilt from scratch to avoid the pitfall that `@polkadot/api` were into like type defs system (thanks god! we have metadata v14 & v15), no more dependencies with wasm bob and we're using native BigInt primitive instead of relying in `bn.js`.
+Dedot was rebuilt from scratch to avoid the pitfalls faced by `@polkadot/api` like type defs system (thanks god! we have metadata v14 & v15). We eliminated dependencies on wasm-blob and now use the native [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) primitive instead of relying on `bn.js`.
 
 As a result, the same dead simple dapp that has the size of nearly ~1MB built with `@polkadot/api` earlier, now the size is down to 127kB (gzip: 39kB) with dedot. It's ~7-8x smaller. Don't trust my number, [verify](https://github.com/dedotdev/dedot) it yourself!
 
