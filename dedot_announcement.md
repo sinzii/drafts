@@ -11,7 +11,7 @@ Dapps have always been a crucial part of any blockchain ecosystem, providing use
 
 However, through our development experience, benchmarking, and profiling, we discovered that `@polkadot/api` has several limitations that may hinder developers from creating optimal dapps for the Polkadot ecosystem.
 
-## Polkadot.js API's (`@polkadot/api` or `pjs`) limitations
+## Limitations of Polkadot.js API (`@polkadot/api` or `pjs`) 
 ###  Large bundle-size (`wasm` & `bn.js` & unused type defs)
 
 I believe any developer using `@polkadot/api` to build their dapps will recognize this issue firsthand. `@polkadot/api` has tight dependencies on wasm-blob (crypto utilities) and `bn.js` for handling BigInt numbers. Additionally, it comes with a large number of [type defs](https://github.com/polkadot-js/api/tree/master/packages/types/src/interfaces) by default, even if the dapp doesn't use most of those APIs or information. This makes the entire bundle size of dapps quite large, resulting in a poor user experience as users have to wait longer before they can start interacting with the dapp.
