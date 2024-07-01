@@ -94,7 +94,7 @@ This is useful for advanced users who wants to interact with the node directly v
 ### A builtin mechanism to cache metadata
 Downloading a big metadata blob can take a large amount of time, depending on the JSON-RPC server that dapps are connecting to, it might potentially take longer if the connection is via a light client. For example, downloading Polkadot metadata (~500 kB) can take up to 500ms or ~1s or even longer depends on the network conditions.
 
-This is a nice to have feature where dapp only have to download metadata on the first load, later metadata can be fetched directly from cache without having to download again.
+This is a nice to have feature where dapp only have to download metadata on the first load, later metadata can be fetched directly from cache without having to download again (until there is a runtime upgrade).
 
 ### Compact Metadata (on the road-map)
 Most of dapp does not use all of the types and api from the metadata, so why not extract only the information/types that dapps needs to function properly. So the goal is to produce a small and compact metadata that can be easily bundled inside dapps, so dapps no longer need to download metadata again from the network directly, saving a reasonable amount of loading time. ([ref](https://github.com/dedotdev/dedot/issues/45))
