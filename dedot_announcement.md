@@ -16,7 +16,7 @@ However, through our development experience, benchmarking, and profiling, we dis
 
 I believe any developer using `@polkadot/api` to build their dapps will recognize this issue firsthand. `@polkadot/api` has tight dependencies on wasm-blob (crypto utilities) and `bn.js` for handling BigInt numbers. Additionally, it comes with a large number of [type defs](https://github.com/polkadot-js/api/tree/master/packages/types/src/interfaces) by default, even if the dapp doesn't use most of those APIs or information. This makes the entire bundle size of dapps quite large, resulting in a poor user experience as users have to wait longer before they can start interacting with the dapp.
 
-Here is the bundle size of a very simple dapp built using @polkadot/api (with no other dependencies) that performs two relatively trivial steps: 1) initializing the API instance, and 2) fetching the account balance. As shown in the image below, the pre-compression size is close to 1MB, and even after gzip compression, the size remains quite large for such a simple dapp.
+Here is the bundle size of a very simple dapp built using `@polkadot/api` (with no other dependencies) that performs two relatively trivial steps: 1) initializing the API instance, and 2) fetching the account balance. As shown in the image below, the pre-compression size is close to 1MB, and even after gzip compression, the size remains quite large for such a simple dapp.
 
 <img width="660" alt="Pasted image 20240628111053" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/fdf499d8-2fad-4396-98d5-48b55e937a85">
 
@@ -34,7 +34,7 @@ I remembered my first time working with `@polkadot/api` to interact with my cust
 ### Small bundle-size and tree-shakable
 Dedot was rebuilt from scratch to avoid the pitfalls faced by `@polkadot/api` like type defs system (thanks god! we have metadata v14 & v15). We eliminated dependencies on wasm-blob and now use the native [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) primitive instead of relying on `bn.js`.
 
-As a result, the same dead simple dapp that has the size of nearly ~1MB built with `@polkadot/api` earlier, now the size is down to 127kB (gzip: 39kB) with dedot. It's ~7-8x smaller. Don't trust my number, [verify](https://github.com/dedotdev/dedot) it yourself!
+As a result, the same dead simple dapp that has the size of nearly ~1MB built with `@polkadot/api` earlier, now the size is down to 127kB (gzip: 39kB) with `dedot`. It's ~7-8x smaller. Don't trust my number, [verify](https://github.com/dedotdev/dedot) it yourself!
 
 <img width="686" alt="Pasted image 20240628111029" src="https://github.com/sinzii/w3-grant-draft/assets/6867026/6af835f4-c285-40dc-af9f-bf1906f41b35">
 
@@ -60,29 +60,29 @@ Currently, there is a scheduled job running twice everyday to check if there's a
 
 ## Dedot also comes with more & more features
 ### Native TypeScript type system for scale-codec
-Instead of using a wrapped codec for `u16`, `u64` in `@polkadot/api`, dedot directly use TypeScript type system to represent these type as `number` or `bigint`.
+Instead of using a wrapped codec (e.g: `u16`, `u64`) in `@polkadot/api`, `dedot` directly use TypeScript type system to represent these types (e.g: `number` or `bigint`).
 
-This make it easier for new dapp developers get started, and downstream libraries can easily inspect and utilize the types defined.
+This make it easier for new dapp developers get started as they don't have to unwrap the codec (`.toNumber()`, `.toBigint()`, ...) to access the data. Also downstream libraries can easily inspect and utilize the types defined for suggestion & type-check.
 
 ### Adopted latest changes in metadata V14 & V15
 `dedot` creates types dynamically lazily on the fly with information from metadata and the types will be used for scale-codec encoding & decoding data.
 
 An important change in metadata V15 is `Runtime APIs` information. `dedot` do leverage these information to expose the APIs (eg: [Polkadot](https://github.com/dedotdev/chaintypes/blob/main/packages/chaintypes/src/polkadot/runtime.d.ts)) & make the call.
 
-`dedot` also supports metadata V14 for chains that haven't upgraded to V15 yet OR you simply want to query historical state where only V14 is supported. `dedot` also comes with explicit [Runtime API specs](https://github.com/dedotdev/dedot/tree/main/packages/runtime-specs/src) so you can [call Runtime APIs](https://github.com/dedotdev/dedot/tree/main?tab=readme-ov-file#runtime-apis) with metadata V14 as well.
+`dedot` also supports metadata V14 for chains that haven't upgraded to V15 yet OR you simply want to query/access historical state where only V14 is supported. `dedot` also comes with explicit [Runtime API specs](https://github.com/dedotdev/dedot/tree/main/packages/runtime-specs/src) so you can [call Runtime APIs](https://github.com/dedotdev/dedot/tree/main?tab=readme-ov-file#runtime-apis) with metadata V14 as well.
 
 ### Build on top of new JSON-RPC specs (and the legacy as well but deprecated soon)
-The new JSON-RPC specs is the new standard and is encourage to use. `dedot` is also using these new apis by default.
+The [new JSON-RPC spec](https://paritytech.github.io/json-rpc-interface-spec/introduction.html) is the new standard and is encouraged to use. `dedot` is also using these new apis by default.
 
-For the chain that haven't upgraded the the new specs yet, dapps could still be able to connect with those chains via a `LegacyClient`. But this will be deprecated soon in favor of the new specs.
+For the chain that haven't upgraded the the new spec yet, dapps could still be able to connect with those chains via a `LegacyClient` that's built on top of the legacy JSON-RPC APIs. But this will be deprecated soon in favor of the new spec.
 
 ### Support light clients (`smoldot`)
-Since `smoldot` has a very good supports for new JSON-RPC specs for better performance. Developers can connect to the network via `smoldot` light client using the [`SmoldotProvider`](https://github.com/dedotdev/dedot/blob/main/packages/providers/src/smoldot/SmoldotProvider.ts). 
+Since `smoldot` has a very good supports for new JSON-RPC spec for better performance. Developers can connect to the network via `smoldot` light client using the [`SmoldotProvider`](https://github.com/dedotdev/dedot/blob/main/packages/providers/src/smoldot/SmoldotProvider.ts). 
 
 ### Typed Contract APIs
 Another limitations of `@polkadot/api` is lack of types & apis suggestions when working with ink!  Smart Contracts. With `dedot`, we're going to change this forever. Similar to how we expose Types & APIs from the runtime metadata, we're using the same trick for ink! smart contracts as well to enable Types & APIs suggestions for any ink! contracts that you're working on.
 
-Below is quick gif to show you how does it look when you works with a PSP22 smart contract. Or if you want to see a working example, here's the [code](https://github.com/dedotdev/dedot/blob/main/zombienet-tests/src/0001-check-contract-api.ts).
+Below is quick gif to show you how does it look when you works with a PSP22 smart contract. Or if you want to see a working example, here's the [code](https://github.com/dedotdev/dedot/blob/main/zombienet-tests/src/0001-check-contract-api.ts). There is more improvements and refinements to do for the Contract APIs, but it's ready for you to explore and play around now.
 
 ![typink](https://github.com/sinzii/w3-grant-draft/assets/6867026/23f0fe2c-49be-4f38-a432-3d473181ebc6)
 
@@ -97,7 +97,7 @@ Downloading a big metadata blob can take a large amount of time, depending on th
 This is a nice to have feature where dapp only have to download metadata on the first load, later metadata can be fetched directly from cache without having to download again (until there is a runtime upgrade).
 
 ### Compact Metadata (on the road-map)
-Most of dapp does not use all of the types and api from the metadata, so why not extract only the information/types that dapps needs to function properly. So the goal is to produce a small and compact metadata that can be easily bundled inside dapps, so dapps no longer need to download metadata again from the network directly, saving a reasonable amount of loading time. ([ref](https://github.com/dedotdev/dedot/issues/45))
+Most of dapps do not use all of the types and api from the metadata, so why not extract only the information/types that dapps needs to function properly. So our goal is to produce a small and compact metadata that can be easily bundled inside dapps, so dapps no longer need to download metadata again from the network directly (until the next runtime upgrade), saving a reasonable amount of loading time. ([ref](https://github.com/dedotdev/dedot/issues/45))
 
 ### XCM utilities (on the road-map)
 Crafting an XCM are a bit complicated, due to the heavy usage of nested enums. Developers can still [making an XCM](https://gist.github.com/sinzii/078a48976827e3a85f5cebda0930d1f9) transaction with `dedot` by following along with the types suggestions. But the syntax is very cumbersome and inefficient. We plan to add some extra tool on top to help the process of crafting XCM message easier.
