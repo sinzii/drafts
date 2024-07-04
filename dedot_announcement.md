@@ -97,7 +97,7 @@ Downloading a big metadata blob can take a large amount of time, depending on th
 This is a nice to have feature where dapp only have to download metadata on the first load, later metadata can be fetched directly from cache without having to download again (until there is a runtime upgrade).
 
 ### Compact Metadata (on the road-map)
-Most of dapps do not use all of the types and api from the metadata, so why not extract only the information/types that dapps needs to function properly. So our goal is to produce a small and compact metadata that can be easily bundled inside dapps, so dapps no longer need to download metadata again from the network directly (until the next runtime upgrade), saving a reasonable amount of loading time. ([ref](https://github.com/dedotdev/dedot/issues/45))
+Most of dapps do not use all of the Types and APIs from the metadata, so why not extract only the information/types that dapps needs to function properly. Our goal is to produce a small and compact metadata that can be easily bundled inside dapps, so dapps no longer need to download metadata again from the network directly (until the next runtime upgrade), saving a reasonable amount of loading time. ([ref](https://github.com/dedotdev/dedot/issues/45))
 
 ### XCM utilities (on the road-map)
 Crafting an XCM are a bit complicated, due to the heavy usage of nested enums. Developers can still [making an XCM](https://gist.github.com/sinzii/078a48976827e3a85f5cebda0930d1f9) transaction with `dedot` by following along with the types suggestions. But the syntax is very cumbersome and inefficient. We plan to add some extra tool on top to help the process of crafting XCM message easier.
@@ -124,7 +124,7 @@ Dedot is currently in alpha testing phase, so it's ready for your experiments an
 We are small team that falls in love with Polkadot technology and believe in the vision of a decentralization future. 
 - We've started contributing from 2022 and since then we have secured 2 W3F Grants to building open source for Polkadot:
   - The [1st grant](https://grants.web3.foundation/applications/coong_wallet) is to build [`Coong Wallet`](https://github.com/CoongCrafts/coong-wallet), a website-based wallet that's compatible with `@polkadot/extension` APIs and works seamlessly on both desktop and mobile.
-  - The [2nd grant](https://grants.web3.foundation/applications/delightfuldot) is to fund the initial phase of `dedot` (formerly named DelightfulDOT)
+  - The [2nd grant](https://grants.web3.foundation/applications/delightfuldot) is to fund the initial phase of [`dedot`](https://github.com/dedotdev/dedot) (formerly named DelightfulDOT)
 - We're also the [1st prize winner](https://x.com/dotinvietnam/status/1740678795286495512) of Polkadot Hackathon Vietnam 2023 with [`InSpace`](https://inspace.ink), an on-chain community launcher via ink! smart contracts.
 - Thang (@sinzii), our lead developer, is a PBA 5 graduate in Singapore.
   
